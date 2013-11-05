@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.OracleClient;
-
-
+using DataLogic.LogicLayer;
+using DataLogic.Model;
 namespace TestConnetORCL
 {
     public partial class Form1 : Form
@@ -49,7 +49,7 @@ namespace TestConnetORCL
                 "(HOST=oracle1.centennialcollege.ca)(PORT=1521))(CONNECT_DATA=" +
                 "(SERVICE_NAME=SQLD)))";
             this.label2.Text = connstring;
-            string slqCmd = "select EMPLOYEE_ID,FIRST_NAME,LAST_NAME,DEPT_CODE from employees";
+            string slqCmd = "select * from orderline";
             this.textBox1.Text = slqCmd;
             
             OracleConnection conn = new OracleConnection(connstring);
@@ -80,6 +80,15 @@ namespace TestConnetORCL
             }
 
             this.bindListView();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CustomerLAO dao = new CustomerLAO();
+            Customer cus = new Customer();
+            cus = dao.getCustoemerById(1);
+            this.label3.Text = cus.CustomerId.ToString();
+            Console.WriteLine(cus.CustomerId);
         }
     }
 }
