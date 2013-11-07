@@ -1,0 +1,4 @@
+C:\Users\300756885\Documents\GitHub\OracleClientForm\OracleClient\DataLogic\bin\Debug\DataLogic.dll
+C:\Users\300756885\Documents\GitHub\OracleClientForm\OracleClient\DataLogic\bin\Debug\DataLogic.pdb
+C:\Users\300756885\Documents\GitHub\OracleClientForm\OracleClient\DataLogic\obj\Debug\DataLogic.dll
+C:\Users\300756885\Documents\GitHub\OracleClientForm\OracleClient\DataLogic\obj\Debug\DataLogic.pdb

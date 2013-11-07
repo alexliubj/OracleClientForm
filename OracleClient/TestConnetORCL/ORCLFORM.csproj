@@ -60,6 +60,54 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\frmCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmCustomer.designer.cs">
+      <DependentUpon>frmCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmCustomerQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmCustomerQuery.designer.cs">
+      <DependentUpon>frmCustomerQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmMain.designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmOrderLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmOrderLine.designer.cs">
+      <DependentUpon>frmOrderLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmOrderQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmOrderQuery.designer.cs">
+      <DependentUpon>frmOrderQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmPrice.designer.cs">
+      <DependentUpon>frmPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmProduct.designer.cs">
+      <DependentUpon>frmProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmProductQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmProductQuery.designer.cs">
+      <DependentUpon>frmProductQuery.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="UI\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -73,6 +121,30 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\frmCustomer.resx">
+      <DependentUpon>frmCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmCustomerQuery.resx">
+      <DependentUpon>frmCustomerQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmOrderLine.resx">
+      <DependentUpon>frmOrderLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmOrderQuery.resx">
+      <DependentUpon>frmOrderQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmPrice.resx">
+      <DependentUpon>frmPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmProduct.resx">
+      <DependentUpon>frmProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmProductQuery.resx">
+      <DependentUpon>frmProductQuery.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
