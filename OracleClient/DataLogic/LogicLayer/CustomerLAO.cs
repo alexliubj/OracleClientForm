@@ -10,13 +10,13 @@ namespace DataLogic.LogicLayer
 {
     public class CustomerLAO
     {
-        private CustomerDAO dal = new CustomerDAO();
+        private static CustomerDAO dal = new CustomerDAO();
 
         /// <summary>
         /// i.Enter new customers, 
         /// </summary>
         /// <param name="customer"></param>
-        public void addNewCustomer(Customer customer)
+        public static void addNewCustomer(Customer customer)
         {
             dal.AddNewCustomer(customer);
         }
@@ -25,7 +25,7 @@ namespace DataLogic.LogicLayer
         /// </summary>
         /// <param name="customerId"></param>
         /// <returns></returns>
-        public Customer getCustoemerById(int customerId)
+        public static Customer getCustoemerById(int customerId)
         {
             return dal.GetCustomerById(customerId);
         }
@@ -33,7 +33,7 @@ namespace DataLogic.LogicLayer
         /// iii. Display all customers -name, complete address, telephone, contact, 
         /// </summary>
         /// <returns></returns>
-        public List<Customer> GetAllCustomers()
+        public static List<Customer> GetAllCustomers()
         {
             return dal.GetAllCustomers();
         }
@@ -41,7 +41,7 @@ namespace DataLogic.LogicLayer
         ///  /// ii. Display and modify all data for a customer, 
         /// </summary>
         /// <param name="cust"></param>
-        public void UpdateCustomer(Customer cust)
+        public static void UpdateCustomer(Customer cust)
         {
             dal.UpdateCustomer(cust);
         }

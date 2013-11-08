@@ -24,6 +24,12 @@ namespace DataLogic.DataAccessLayer
             return cmd;
         }
 
-
+        public OracleCommand ConnectToDatabase(string excuteString)
+        {
+            conn = new OracleConnection(connstring);
+            conn.Open();
+            OracleCommand cmd = new OracleCommand(excuteString,conn);
+            return cmd;
+        }
     }
 }
