@@ -59,7 +59,7 @@
             this.m_address = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_post = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txt_Phone = new System.Windows.Forms.TextBox();
@@ -357,7 +357,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.txt_post);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.txt_Phone);
@@ -377,12 +377,12 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Billing Information";
             // 
-            // textBox1
+            // txt_post
             // 
-            this.textBox1.Location = new System.Drawing.Point(120, 209);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(77, 20);
-            this.textBox1.TabIndex = 31;
+            this.txt_post.Location = new System.Drawing.Point(120, 209);
+            this.txt_post.Name = "txt_post";
+            this.txt_post.Size = new System.Drawing.Size(77, 20);
+            this.txt_post.TabIndex = 31;
             // 
             // label10
             // 
@@ -540,7 +540,7 @@
         private System.Windows.Forms.Button butPrint;
         private System.Windows.Forms.TextBox txt_Name;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_post;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txt_State;
         private System.Windows.Forms.Label label9;

@@ -99,7 +99,7 @@ namespace DataLogic.DataAccessLayer
         {
             try
             {
-                OracleCommand commn = dataConnection.ConnectToDatabase("insert into customers values (:customerid,:discountrate,:registerdate,:custfname,:custlname,:street,:city,:state,:phone,:fax,:email,'Y')");
+                OracleCommand commn = dataConnection.ConnectToDatabase("insert into customers values (:customerid,:discountrate,:registerdate,:custfname,:custlname,:street,:city,:state,:phone,:fax,:email,:multiaddress,:postcode)");
                 commn.Parameters.Add(new OracleParameter("customerid", cust.CustomerId));
                 commn.Parameters.Add(new OracleParameter("discountrate", cust.DiscountRate));
                 commn.Parameters.Add(new OracleParameter("registerdate", cust.RegisterDate));
@@ -111,9 +111,24 @@ namespace DataLogic.DataAccessLayer
                 commn.Parameters.Add(new OracleParameter("phone", cust.Phone));
                 commn.Parameters.Add(new OracleParameter("fax", cust.Fax));
                 commn.Parameters.Add(new OracleParameter("email", "test@test.com"));
-                //commn.Parameters.Add(new OracleParameter("multiaddress", cust.MutiAddress));
+                commn.Parameters.Add(new OracleParameter("multiaddress", cust.MutiAddress));
+                commn.Parameters.Add(new OracleParameter("postcode", cust.PostCode));
                 string sss = commn.ToString();
                 int result = commn.ExecuteNonQuery();
+
+                if (string.Compare(cust.MutiAddress , "N") ==0)
+                {
+                    commn = dataConnection.ConnectToDatabase("insert into shippinginfo values (:SHIPPINGLNAME, :shippingfname,:shippingstreet, :shippingstate,:shippingphone,:customerid,:shippingcity,:shippingpost)");
+                    commn.Parameters.Add(new OracleParameter("customerid", cust.CustomerId));
+                    commn.Parameters.Add(new OracleParameter("SHIPPINGLNAME", cust.ShipInfo.ShippingLastName));
+                    commn.Parameters.Add(new OracleParameter("shippingfname", cust.ShipInfo.ShippingFirstName));
+                    commn.Parameters.Add(new OracleParameter("shippingstreet", cust.ShipInfo.ShippingStreet));
+                    commn.Parameters.Add(new OracleParameter("shippingstate", cust.ShipInfo.ShippingState));
+                    commn.Parameters.Add(new OracleParameter("shippingcity", cust.ShipInfo.ShippingCity));
+                    commn.Parameters.Add(new OracleParameter("shippingpost", cust.ShipInfo.ShipppingPost));
+                    commn.Parameters.Add(new OracleParameter("shippingphone", cust.ShipInfo.ShippingPhone));
+                    result = commn.ExecuteNonQuery();
+                }
                 dataConnection.CloseDatabase();
             }
             catch (Exception e)

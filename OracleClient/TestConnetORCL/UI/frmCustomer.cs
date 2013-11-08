@@ -55,6 +55,8 @@ namespace xtreme
             txt_ln.Text = customer.CustLastName;
             txt_fn.Text = customer.CustFirstName.ToString();
             txt_Name.Text = customer.CustFirstName + customer.CustLastName;
+            txt_post.Text = customer.PostCode;
+
             if (String.Compare(customer.MutiAddress, "Y") == 0)
             {
                 chk_ship.Checked = true;
@@ -86,7 +88,25 @@ namespace xtreme
             aCustomer.City = txt_City.Text;
             aCustomer.CustLastName = txt_ln.Text;
             aCustomer.CustFirstName = txt_fn.Text;
-
+            aCustomer.PostCode = txt_post.Text;
+            if (!chk_ship.Checked)
+            {
+                aCustomer.MutiAddress = "N";
+                ShippingInfo aInfo = new ShippingInfo();
+                aInfo.CustosmerId = aCustomer.CustomerId;
+                aInfo.ShippingStreet = m_address.Text;
+                aInfo.ShippingCity = m_city.Text;
+                aInfo.ShippingFirstName = m_first.Text;
+                aInfo.ShippingLastName = m_last.Text;
+                aInfo.ShipppingPost = m_postcode.Text;
+                aInfo.ShippingState = m_state.Text;
+                aInfo.ShippingPhone = Int32.Parse(m_Phone.Text.ToString());
+                aCustomer.ShipInfo = aInfo;
+            }
+            else
+            {
+                aCustomer.MutiAddress = "Y";
+            }
             return aCustomer;
         }
 
