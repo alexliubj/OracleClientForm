@@ -55,7 +55,7 @@
             this.chk_ship = new System.Windows.Forms.CheckBox();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_add = new System.Windows.Forms.Button();
             this.prod_qnt = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.comb_prod = new System.Windows.Forms.ComboBox();
@@ -93,6 +93,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.e_cust = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btn_delete = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -346,7 +347,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btn_delete);
+            this.groupBox1.Controls.Add(this.btn_add);
             this.groupBox1.Controls.Add(this.prod_qnt);
             this.groupBox1.Controls.Add(this.label26);
             this.groupBox1.Controls.Add(this.comb_prod);
@@ -384,15 +386,16 @@
             this.groupBox1.Text = "Order Information";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // button1
+            // btn_add
             // 
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(616, 400);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 25);
-            this.button1.TabIndex = 61;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_add.Image = ((System.Drawing.Image)(resources.GetObject("btn_add.Image")));
+            this.btn_add.Location = new System.Drawing.Point(616, 400);
+            this.btn_add.Name = "btn_add";
+            this.btn_add.Size = new System.Drawing.Size(75, 25);
+            this.btn_add.TabIndex = 61;
+            this.btn_add.Text = "Add";
+            this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // prod_qnt
             // 
@@ -725,6 +728,17 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Customer ID";
             // 
+            // btn_delete
+            // 
+            this.btn_delete.Image = ((System.Drawing.Image)(resources.GetObject("btn_delete.Image")));
+            this.btn_delete.Location = new System.Drawing.Point(733, 400);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(75, 25);
+            this.btn_delete.TabIndex = 62;
+            this.btn_delete.Text = "Delete";
+            this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            // 
             // frmOrderLine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -815,8 +829,9 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.ComboBox comb_prod;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_add;
         private System.Windows.Forms.TextBox prod_qnt;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button btn_delete;
     }
 }

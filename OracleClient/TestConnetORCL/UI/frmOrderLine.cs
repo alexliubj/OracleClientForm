@@ -18,7 +18,10 @@ namespace xtreme
         private List<Order> listOrder = new List<Order>();
         private List<OrderLines> orderLine = new List<OrderLines>();
         private FormStatus currentStatus = FormStatus.nonstatus;
-
+        private List<Product> allProduct = new List<Product>();
+        string[] productName = null;
+        private List<TempProduct> listTempProduct = new List<TempProduct>();
+        private int currentSelectedIndex = 0;
         private enum FormStatus
         {
             nonstatus =0,
@@ -38,7 +41,9 @@ namespace xtreme
         }
 
         private void CleanAllComponets()
-        { 
+        {
+            comb_prod.SelectedIndex = 0;
+            this.comb_prod.Items.AddRange(productName);
         }
 
         private void UpdateBottomInformation()
@@ -106,8 +111,15 @@ namespace xtreme
 
         private void InitializeAllData()
         {
+            btn_add.Enabled = false;
+            btn_delete.Enabled = false;
             listOrder = OrderLAO.GetAllOrders();
             dataGridView1.DataSource = listOrder;
+            allProduct = ProductsLAO.GetAllProducts();
+            for (int i = 0; i < allProduct.Count; i++)
+            {
+                productName[i] = ((Product)allProduct[i]).ProductName;
+            }
         }
         /// <summary>
         /// add order
@@ -117,7 +129,7 @@ namespace xtreme
         private void btnAdd_Click(object sender, EventArgs e)
         {
             currentStatus = FormStatus.adding;
-            CleanAllComponets();
+            InitializeComponent();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -156,6 +168,7 @@ namespace xtreme
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int selectIndex = dataGridView1.CurrentRow.Index;
+            currentSelectedIndex = selectIndex;
             Order aOrder = new Order();
             aOrder = listOrder[selectIndex];
             SetOrderInformation(aOrder);
@@ -176,5 +189,31 @@ namespace xtreme
         {
 
         }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            listTempProduct.Add(new TempProduct()
+            {
+                ProductName = comb_prod.SelectedText.ToString(),
+                ProductId = ((Product)allProduct[currentSelectedIndex]).ProductId,
+                Quantity = Int32.Parse(prod_qnt.Text)
+            });
+
+            dataGridView1.DataSource = listTempProduct;
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            listTempProduct.RemoveAt(currentSelectedIndex);
+            dataGridView1.DataSource = listTempProduct;
+        }
+    }
+
+    class TempProduct 
+    {
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public int Quantity { get; set; }
+        
     }
 }

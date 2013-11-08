@@ -8,12 +8,12 @@ namespace DataLogic.LogicLayer
 {
     public class ProductsLAO
     {
-        private ProductsDAO prodDao = new ProductsDAO();
+        private static ProductsDAO prodDao = new ProductsDAO();
         /// <summary>
         /// iv. Enter a new product, 
         /// </summary>
         /// <param name="prod"></param>
-        public void AddNewProduct(Product prod)
+        public static void AddNewProduct(Product prod)
         {
             prodDao.InsertProduct(prod);
         }
@@ -22,7 +22,7 @@ namespace DataLogic.LogicLayer
         /// </summary>
         /// <param name="prodId"></param>
         /// <returns></returns>
-        public Product getProductById(int prodId)
+        public static Product getProductById(int prodId)
         {
             return prodDao.getProductById(prodId);
         }
@@ -30,7 +30,7 @@ namespace DataLogic.LogicLayer
         /// v.  modify all data for a product, 
         /// </summary>
         /// <param name="prod"></param>
-        public void UpdateProduct(Product prod)
+        public static void UpdateProduct(Product prod)
         {
             prodDao.UpdateProduct(prod);
         }
@@ -38,7 +38,7 @@ namespace DataLogic.LogicLayer
         /// vi. Display a complete listing of product number, description, and unit price for all products, 
         /// </summary>
         /// <returns></returns>
-        public List<Product> GetAllProducts()
+        public static List<Product> GetAllProducts()
         {
             return prodDao.getProductslist();
         }
@@ -46,7 +46,7 @@ namespace DataLogic.LogicLayer
         /// vii. A form permitting a mass price increase of x% for all products,
         /// </summary>
         /// <param name="rate"></param>
-        public void UpdateAllPrice(float rate)
+        public static void UpdateAllPrice(float rate)
         {
             prodDao.UpdateAllPriceByRate(rate);
         }
