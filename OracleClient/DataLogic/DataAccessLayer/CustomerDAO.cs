@@ -19,7 +19,10 @@ namespace DataLogic.DataAccessLayer
             try
             {
                 OracleCommand commn = dataConnection.ConnectToDatabase();
-                commn.CommandText = "select customerid, discountrate, registerdate, custfname, custlname, state, street, city,phone, fax, email, multiaddress from customers";
+                commn.CommandText = "select cus.customerid, discountrate, registerdate, custfname, custlname, state, street, city,phone, fax, email, multiaddress,postcode," +
+                            "s.shippingfname,s.shippingstreet, s.shippingstate,s.shippingcity,s.shippingphone,s.SHIPPINGLNAME,s.shippingpost " +
+                            "from customers cus left join shippinginfo s " +
+                            "on cus.customerid = s.customerid";
                 OracleDataReader odr = commn.ExecuteReader();
                 while (odr.Read())
                 {
@@ -35,7 +38,24 @@ namespace DataLogic.DataAccessLayer
                     aCustomer.Phone = odr.GetInt32(8);
                     aCustomer.Fax = odr.GetInt32(9);
                     aCustomer.Email = odr.GetString(10);
-                   // aCustomer.MutiAddress = (char)odr.GetInt32(11);
+                    aCustomer.MutiAddress = odr.GetString(11);
+                    aCustomer.PostCode = odr.GetString(12) == null ? "" : odr.GetString(12);
+
+                    if(string.Compare(aCustomer.MutiAddress, "N") ==0)
+                    {
+                        ShippingInfo shipinfo = new ShippingInfo();
+                        shipinfo.CustosmerId = aCustomer.CustomerId;
+                        
+                        shipinfo.ShippingFirstName = odr.GetString(13);
+                        shipinfo.ShippingStreet = odr.GetString(14);
+                        shipinfo.ShippingState = odr.GetString(15);
+                        shipinfo.ShippingCity = odr.GetString(16);
+                        shipinfo.ShippingPhone = odr.GetInt32(17);
+                        shipinfo.ShippingLastName = odr.GetString(18);
+                        shipinfo.ShipppingPost = odr.GetString(19);
+                        aCustomer.ShipInfo = shipinfo;
+                    }
+
                     retCustomer.Add(aCustomer);
 
                 }

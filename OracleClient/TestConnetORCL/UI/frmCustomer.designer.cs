@@ -34,8 +34,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txt_fn = new System.Windows.Forms.TextBox();
             this.txt_id = new System.Windows.Forms.TextBox();
@@ -47,18 +45,18 @@
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.m_postcode = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.m_Phone = new System.Windows.Forms.TextBox();
+            this.m_state = new System.Windows.Forms.TextBox();
+            this.m_first = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.m_city = new System.Windows.Forms.TextBox();
+            this.m_last = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.m_address = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -129,26 +127,6 @@
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(41, 518);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 25);
-            this.btnDelete.TabIndex = 17;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
-            this.btnEdit.Location = new System.Drawing.Point(7, 516);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 27);
-            this.btnEdit.TabIndex = 16;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
             // 
             // btnAdd
             // 
@@ -222,6 +200,7 @@
             this.chk_ship.TabIndex = 39;
             this.chk_ship.Text = "Same as at left() or:";
             this.chk_ship.UseVisualStyleBackColor = true;
+            this.chk_ship.CheckedChanged += new System.EventHandler(this.chk_ship_CheckedChanged);
             // 
             // cb_Rate
             // 
@@ -243,18 +222,18 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.textBox2);
+            this.groupBox3.Controls.Add(this.m_postcode);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Controls.Add(this.textBox3);
-            this.groupBox3.Controls.Add(this.textBox4);
-            this.groupBox3.Controls.Add(this.textBox5);
+            this.groupBox3.Controls.Add(this.m_Phone);
+            this.groupBox3.Controls.Add(this.m_state);
+            this.groupBox3.Controls.Add(this.m_first);
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.label14);
-            this.groupBox3.Controls.Add(this.textBox6);
-            this.groupBox3.Controls.Add(this.textBox7);
+            this.groupBox3.Controls.Add(this.m_city);
+            this.groupBox3.Controls.Add(this.m_last);
             this.groupBox3.Controls.Add(this.label15);
-            this.groupBox3.Controls.Add(this.textBox8);
+            this.groupBox3.Controls.Add(this.m_address);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Location = new System.Drawing.Point(424, 74);
             this.groupBox3.Name = "groupBox3";
@@ -272,12 +251,12 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "Contact FirstName";
             // 
-            // textBox2
+            // m_postcode
             // 
-            this.textBox2.Location = new System.Drawing.Point(120, 209);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(77, 20);
-            this.textBox2.TabIndex = 31;
+            this.m_postcode.Location = new System.Drawing.Point(120, 209);
+            this.m_postcode.Name = "m_postcode";
+            this.m_postcode.Size = new System.Drawing.Size(77, 20);
+            this.m_postcode.TabIndex = 31;
             // 
             // label11
             // 
@@ -297,26 +276,26 @@
             this.label12.TabIndex = 30;
             this.label12.Text = "Postal Code";
             // 
-            // textBox3
+            // m_Phone
             // 
-            this.textBox3.Location = new System.Drawing.Point(120, 62);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(77, 20);
-            this.textBox3.TabIndex = 33;
+            this.m_Phone.Location = new System.Drawing.Point(120, 62);
+            this.m_Phone.Name = "m_Phone";
+            this.m_Phone.Size = new System.Drawing.Size(77, 20);
+            this.m_Phone.TabIndex = 33;
             // 
-            // textBox4
+            // m_state
             // 
-            this.textBox4.Location = new System.Drawing.Point(120, 169);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(77, 20);
-            this.textBox4.TabIndex = 29;
+            this.m_state.Location = new System.Drawing.Point(120, 169);
+            this.m_state.Name = "m_state";
+            this.m_state.Size = new System.Drawing.Size(77, 20);
+            this.m_state.TabIndex = 29;
             // 
-            // textBox5
+            // m_first
             // 
-            this.textBox5.Location = new System.Drawing.Point(120, 22);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(77, 20);
-            this.textBox5.TabIndex = 5;
+            this.m_first.Location = new System.Drawing.Point(120, 22);
+            this.m_first.Name = "m_first";
+            this.m_first.Size = new System.Drawing.Size(77, 20);
+            this.m_first.TabIndex = 5;
             // 
             // label13
             // 
@@ -336,19 +315,19 @@
             this.label14.TabIndex = 20;
             this.label14.Text = "LastName";
             // 
-            // textBox6
+            // m_city
             // 
-            this.textBox6.Location = new System.Drawing.Point(120, 132);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(77, 20);
-            this.textBox6.TabIndex = 27;
+            this.m_city.Location = new System.Drawing.Point(120, 132);
+            this.m_city.Name = "m_city";
+            this.m_city.Size = new System.Drawing.Size(77, 20);
+            this.m_city.TabIndex = 27;
             // 
-            // textBox7
+            // m_last
             // 
-            this.textBox7.Location = new System.Drawing.Point(264, 19);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(77, 20);
-            this.textBox7.TabIndex = 21;
+            this.m_last.Location = new System.Drawing.Point(264, 19);
+            this.m_last.Name = "m_last";
+            this.m_last.Size = new System.Drawing.Size(77, 20);
+            this.m_last.TabIndex = 21;
             // 
             // label15
             // 
@@ -359,12 +338,12 @@
             this.label15.TabIndex = 26;
             this.label15.Text = "City";
             // 
-            // textBox8
+            // m_address
             // 
-            this.textBox8.Location = new System.Drawing.Point(120, 92);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(221, 20);
-            this.textBox8.TabIndex = 25;
+            this.m_address.Location = new System.Drawing.Point(120, 92);
+            this.m_address.Name = "m_address";
+            this.m_address.Size = new System.Drawing.Size(221, 20);
+            this.m_address.TabIndex = 25;
             // 
             // label16
             // 
@@ -496,10 +475,13 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(29, 332);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(762, 122);
             this.dataGridView1.TabIndex = 11;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -525,8 +507,6 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.btnDelete);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmCustomer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -550,8 +530,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox txt_fn;
         private System.Windows.Forms.TextBox txt_id;
@@ -575,18 +553,18 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox m_postcode;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox m_Phone;
+        private System.Windows.Forms.TextBox m_state;
+        private System.Windows.Forms.TextBox m_first;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox m_city;
+        private System.Windows.Forms.TextBox m_last;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox m_address;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label10;

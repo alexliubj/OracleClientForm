@@ -18,7 +18,8 @@ namespace DataLogic.Model
         public int Phone { get; set; }
         public int Fax { get; set; }
         public string Email { get; set; }
-        public char MutiAddress { get; set; }
+        public string MutiAddress { get; set; }
+        public string PostCode { get; set; }
         public ShippingInfo ShipInfo { get; set; }
     }
 }

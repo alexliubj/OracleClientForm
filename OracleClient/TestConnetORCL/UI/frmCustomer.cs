@@ -32,6 +32,19 @@ namespace xtreme
             InitAllComponetsStatus(false);
         }
 
+        private void SetCheckboxGroup(bool status)
+        {
+            Control[] c = this.Controls.Find("groupBox3", true);
+            foreach (Control a in c)
+            {
+                foreach (Control g in a.Controls)
+                {
+                    if (g is TextBox)
+                        g.Enabled = !status;
+                }
+            }
+        }
+
         private void SetAllComponetsValues(Customer customer)
         {
             txt_id.Text = customer.CustomerId.ToString();
@@ -42,6 +55,25 @@ namespace xtreme
             txt_ln.Text = customer.CustLastName;
             txt_fn.Text = customer.CustFirstName.ToString();
             txt_Name.Text = customer.CustFirstName + customer.CustLastName;
+            if (String.Compare(customer.MutiAddress, "Y") == 0)
+            {
+                chk_ship.Checked = true;
+                SetCheckboxGroup(true);
+            }
+            else
+            {
+                chk_ship.Checked = false;
+                SetCheckboxGroup(false);
+                
+
+                m_address.Text = customer.ShipInfo.ShippingStreet;
+                m_city.Text = customer.ShipInfo.ShippingCity;
+                m_first.Text = customer.ShipInfo.ShippingFirstName;
+                m_last.Text = customer.ShipInfo.ShippingLastName;
+                m_postcode.Text = customer.ShipInfo.ShipppingPost;
+                m_state.Text = customer.ShipInfo.ShippingState;
+                m_Phone.Text = customer.ShipInfo.ShippingPhone.ToString();
+            }
         }
 
         private Customer GetAllCustomerFromComponents()
@@ -117,6 +149,7 @@ namespace xtreme
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int selectIndex = dataGridView1.CurrentRow.Index;
+           // int selectIndex = Int32.Parse( this.dataGridView1.SelectedCells[0].Value.ToString());
             datagridSlect = selectIndex;
             InitAllComponetsStatus(true);
             Customer aCustomer = new Customer();
@@ -161,6 +194,19 @@ namespace xtreme
         {
             //cancle
             this.Close();
+        }
+
+        private void chk_ship_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_ship.Checked == false)
+            {
+                SetCheckboxGroup(false);
+            }
+            else
+            {
+                SetCheckboxGroup(true);
+            }
+
         }
     }
 }

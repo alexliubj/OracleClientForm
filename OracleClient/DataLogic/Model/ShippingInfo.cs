@@ -14,5 +14,6 @@ namespace DataLogic.Model
         public string ShippingState { get; set; }
         public int ShippingPhone { get; set; }
         public int CustosmerId { get; set; }
+        public string ShipppingPost { get; set; }
     }
 }
