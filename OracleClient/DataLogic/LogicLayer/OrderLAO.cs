@@ -8,18 +8,18 @@ namespace DataLogic.LogicLayer
 {
     public class OrderLAO
     {
-        private OrderDAO dao = new OrderDAO();
+        private static OrderDAO dao = new OrderDAO();
 
         /// <summary>
         /// viii. Enter a new orders, 
         /// </summary>
         /// <param name="order"></param>
-        public void CreateNewOrder(Order order)
+        public static void CreateNewOrder(Order order)
         {
             dao.AddOrder(order);
         }
 
-        public List<Order> GetAllOrders()
+        public static List<Order> GetAllOrders()
         {
             return dao.GetAllOrder();
         }
@@ -28,7 +28,7 @@ namespace DataLogic.LogicLayer
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
-        public Order GetOrderById(int orderId)
+        public static Order GetOrderById(int orderId)
         {
             return dao.GetOrderById();
         }
@@ -38,7 +38,7 @@ namespace DataLogic.LogicLayer
         /// </summary>
         /// <param name="customerId"></param>
         /// <returns></returns>
-        public List<Order> GetOrderByCustomer(int customerId)
+        public static List<Order> GetOrderByCustomer(int customerId)
         {
             return dao.GetOrderCustomerId(customerId);
         }
@@ -48,7 +48,7 @@ namespace DataLogic.LogicLayer
         /// </summary>
         /// <param name="num"></param>
         /// <returns></returns>
-        public List<Customer> GetTopCustomers(int num)
+        public static List<Customer> GetTopCustomers(int num)
         {
             return dao.GetTopCustomer(num);
         }
@@ -61,9 +61,14 @@ namespace DataLogic.LogicLayer
         /// <param name="daysForm"></param>
         /// <param name="daysTo"></param>
         /// <returns></returns>
-        public List<Order> GetOrderByDate(int daysForm, int daysTo)
+        public static List<Order> GetOrderByDate(int daysForm, int daysTo)
         {
             return dao.GetOrderByDate(daysForm, daysTo);
+        }
+
+        public static List<OrderLines> GetLinesByOrderId(int orderId)
+        {
+            return dao.GetLinesByOrderId(orderId);
         }
     }
 }

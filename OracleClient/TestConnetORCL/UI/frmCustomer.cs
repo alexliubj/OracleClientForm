@@ -54,7 +54,7 @@ namespace xtreme
             txt_City.Text = customer.City.ToString();
             txt_ln.Text = customer.CustLastName;
             txt_fn.Text = customer.CustFirstName.ToString();
-            txt_Name.Text = customer.CustFirstName + customer.CustLastName;
+            txt_Name.Text = customer.CustFirstName + " " + customer.CustLastName;
             txt_post.Text = customer.PostCode;
             cb_Rate.Text = customer.DiscountRate.ToString();
 
@@ -212,6 +212,11 @@ namespace xtreme
             InitCustomerList();
         }
 
+        /// <summary>
+        /// Cancel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
             //cancle

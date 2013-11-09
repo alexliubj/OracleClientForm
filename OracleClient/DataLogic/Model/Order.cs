@@ -12,6 +12,7 @@ namespace DataLogic.Model
         public DateTime ShipDate { get; set; }
         public int Status { get; set; }
         public float Discount { get; set; }
+        public int customerId { get; set; }
         public int EmployeeId { get; set; }
         public List<OrderLines> OrderLine { get; set; }
     }

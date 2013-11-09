@@ -45,5 +45,10 @@ namespace DataLogic.LogicLayer
         {
             dal.UpdateCustomer(cust);
         }
+
+        public static List<Customer> GetCustomerByName(string customerName)
+        {
+            return dal.GetCustomerByName(customerName);
+        }
     }
 }
