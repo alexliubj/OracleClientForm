@@ -102,7 +102,7 @@ namespace DataLogic.DataAccessLayer
                 OracleCommand commn = dataConnection.ConnectToDatabase("insert into customers values (:customerid,:discountrate,:registerdate,:custfname,:custlname,:street,:city,:state,:phone,:fax,:email,:multiaddress,:postcode)");
                 commn.Parameters.Add(new OracleParameter("customerid", cust.CustomerId));
                 commn.Parameters.Add(new OracleParameter("discountrate", cust.DiscountRate));
-                commn.Parameters.Add(new OracleParameter("registerdate", cust.RegisterDate));
+                commn.Parameters.Add(new OracleParameter("registerdate", DateTime.Now));
                 commn.Parameters.Add(new OracleParameter("custfname", cust.CustFirstName));
                 commn.Parameters.Add(new OracleParameter("custlname", cust.CustLastName));
                 commn.Parameters.Add(new OracleParameter("state", cust.State));
@@ -158,7 +158,45 @@ namespace DataLogic.DataAccessLayer
         /// <param name="cust"></param>
         public void UpdateCustomer(Customer cust)
         {
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase("update customers set discountrate=:discountrate,registerdate=:registerdate,"+
+                "custfname=:custfname,custlname=:custlname,street=:street,city=:city,state=:state,phone=:phone,fax=:fax,email=:email,multiaddress=:multiaddress,postcode=:postcode where customerid=:customerid");
+                commn.Parameters.Add(new OracleParameter("customerid", cust.CustomerId));
+                commn.Parameters.Add(new OracleParameter("discountrate", cust.DiscountRate));
+                commn.Parameters.Add(new OracleParameter("registerdate", cust.RegisterDate));
+                commn.Parameters.Add(new OracleParameter("custfname", cust.CustFirstName));
+                commn.Parameters.Add(new OracleParameter("custlname", cust.CustLastName));
+                commn.Parameters.Add(new OracleParameter("state", cust.State));
+                commn.Parameters.Add(new OracleParameter("street", cust.Street));
+                commn.Parameters.Add(new OracleParameter("city", cust.City));
+                commn.Parameters.Add(new OracleParameter("phone", cust.Phone));
+                commn.Parameters.Add(new OracleParameter("fax", cust.Fax));
+                commn.Parameters.Add(new OracleParameter("email", "test@test.com"));
+                commn.Parameters.Add(new OracleParameter("multiaddress", cust.MutiAddress));
+                commn.Parameters.Add(new OracleParameter("postcode", cust.PostCode));
+                string sss = commn.ToString();
+                int result = commn.ExecuteNonQuery();
 
+                if (string.Compare(cust.MutiAddress, "N") == 0)
+                {
+                    commn = dataConnection.ConnectToDatabase("update shippinginfo set SHIPPINGLNAME=:SHIPPINGLNAME, shippingfname=:shippingfname,shippingstreet=:shippingstreet, shippingstate=:shippingstate," +
+                        "shippingphone=:shippingphone,shippingcity=:shippingcity,shippingpost=:shippingpost where customerid=:customerid");
+                    commn.Parameters.Add(new OracleParameter("customerid", cust.CustomerId));
+                    commn.Parameters.Add(new OracleParameter("SHIPPINGLNAME", cust.ShipInfo.ShippingLastName));
+                    commn.Parameters.Add(new OracleParameter("shippingfname", cust.ShipInfo.ShippingFirstName));
+                    commn.Parameters.Add(new OracleParameter("shippingstreet", cust.ShipInfo.ShippingStreet));
+                    commn.Parameters.Add(new OracleParameter("shippingstate", cust.ShipInfo.ShippingState));
+                    commn.Parameters.Add(new OracleParameter("shippingcity", cust.ShipInfo.ShippingCity));
+                    commn.Parameters.Add(new OracleParameter("shippingpost", cust.ShipInfo.ShipppingPost));
+                    commn.Parameters.Add(new OracleParameter("shippingphone", cust.ShipInfo.ShippingPhone));
+                    result = commn.ExecuteNonQuery();
+                }
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
         }
     }
 }
