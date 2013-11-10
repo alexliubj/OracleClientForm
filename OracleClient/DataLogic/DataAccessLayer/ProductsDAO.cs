@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataLogic.Model;
+using System.Data.OracleClient;
 namespace DataLogic.DataAccessLayer
 {
     public class ProductsDAO
     {
+        private DataConnection dataConnection = new DataConnection();
         /// <summary>
         /// get all product
         /// </summary>
@@ -14,6 +16,29 @@ namespace DataLogic.DataAccessLayer
         public List<Product> getProductslist()
         {
             List<Product> productList =new List<Product>();
+            List<OrderLines> aLine = new List<OrderLines>();
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase();
+                commn.CommandText = "select * from product";
+                OracleDataReader odr = commn.ExecuteReader();
+                while (odr.Read())
+                {
+                    Product aProduct = new Product();
+
+                    aProduct.ProductId = odr.GetInt32(0);
+                    aProduct.Instruction = odr.GetString(1);
+                    aProduct.UnitPrice = odr.GetFloat(2);
+                    aProduct.UnitType = odr.GetString(3);
+                    aProduct.ProductName = odr.GetString(4);
+
+                    productList.Add(aProduct);
+                }
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
 
             return productList;
         }

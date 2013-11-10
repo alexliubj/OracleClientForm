@@ -185,6 +185,7 @@ namespace xtreme
             currentStatus = currentStatusEnum.addingStatus;
             InitAllComponetsStatus(true);
             CleanAllTheComponest();
+           
         }
 
         private void btnSave_Click(object sender, EventArgs e)

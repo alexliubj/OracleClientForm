@@ -131,8 +131,8 @@ namespace DataLogic.DataAccessLayer
                 commn.CommandText = "select cus.customerid, discountrate, registerdate, custfname, custlname, state, street, city,phone, fax, email, multiaddress,postcode," +
                             "s.shippingfname,s.shippingstreet, s.shippingstate,s.shippingcity,s.shippingphone,s.SHIPPINGLNAME,s.shippingpost " +
                             "from customers cus left join shippinginfo s " +
-                            "on cus.customerid = s.customerid" +
-                            "where cus.custfname =" + customerName;
+                            "on cus.customerid = s.customerid " +
+                            "where cus.custfname =" + "'"+customerName+"'";
                 OracleDataReader odr = commn.ExecuteReader();
                 while (odr.Read())
                 {

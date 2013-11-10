@@ -18,10 +18,11 @@ namespace xtreme
         private List<Order> listOrder = new List<Order>();
         private List<OrderLines> orderLine = new List<OrderLines>();
         private FormStatus currentStatus = FormStatus.nonstatus;
-        private List<Product> allProduct = new List<Product>();
-        string[] productName = null;
-        private List<TempProduct> listTempProduct = new List<TempProduct>();
-        private int currentSelectedIndex = 0;
+        private List<Customer> listcostomer = new List<Customer>();
+        private List<Product> listProduct = new List<Product>();
+        private List<ShowProdut> showProdut = new List<ShowProdut>();
+        private int selectIndexOfProduct = 0;
+        private BindingSource bindingSource = new BindingSource();
         private enum FormStatus
         {
             nonstatus =0,
@@ -41,9 +42,7 @@ namespace xtreme
         }
 
         private void CleanAllComponets()
-        {
-            comb_prod.SelectedIndex = 0;
-            this.comb_prod.Items.AddRange(productName);
+        { 
         }
 
         private void UpdateBottomInformation()
@@ -52,23 +51,34 @@ namespace xtreme
         private void ComboBox1_SelectedIndexChanged(object sender,
             System.EventArgs e)
         {
-
-            ComboBox comboBox = (ComboBox)sender;
-            string selectedEmployee = (string)comb_prod.SelectedItem;
-            int selectIndex = comb_prod.SelectedIndex;
-            this.prod_qnt.Text = orderLine[selectIndex].Quantity.ToString();
+            if (currentStatus != FormStatus.adding)
+            {
+                ComboBox comboBox = (ComboBox)sender;
+                string selectedEmployee = (string)comb_prod.SelectedItem;
+                int selectIndex = comb_prod.SelectedIndex;
+                this.prod_qnt.Text = orderLine[selectIndex].Quantity.ToString();
+            }
+            else
+            {
+ 
+            }
         }
         private void SetAllProductInformation()
         {
             OrderLines[] arr = orderLine.ToArray();
-            string[] productNameString = new string[arr.Length];
-            for (int i = 0; i < arr.Length; i++)
+            if (arr.Length > 0)
             {
-                productNameString[i] = ((OrderLines)arr[i]).ProductInfo.ProductName;
+                string[] productNameString = new string[arr.Length];
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    productNameString[i] = ((OrderLines)arr[i]).ProductInfo.ProductName;
+                }
+                this.comb_prod.Items.Clear();
+                this.comb_prod.Items.AddRange(productNameString);
+                this.comb_prod.SelectedIndex = 0;
+                this.prod_qnt.Text = ((OrderLines)arr[0]).Quantity.ToString();
             }
-            this.comb_prod.Items.AddRange(productNameString);
-            this.comb_prod.SelectedIndex = 0;
-            this.prod_qnt.Text = ((OrderLines)arr[0]).Quantity.ToString();
+            
         }
         private void SetCustomerInformation(Customer customer)
         {
@@ -107,19 +117,22 @@ namespace xtreme
             o_number.Text = aOrder.OrderId.ToString();
             o_status.Text = aOrder.Status.ToString();
             txt_Rate.Text = aOrder.Discount.ToString();
+            if(aOrder.Status <=2)
+            this.o_status.SelectedIndex = aOrder.Status;
         }
 
         private void InitializeAllData()
         {
-            btn_add.Enabled = false;
-            btn_delete.Enabled = false;
             listOrder = OrderLAO.GetAllOrders();
             dataGridView1.DataSource = listOrder;
-            allProduct = ProductsLAO.GetAllProducts();
-            for (int i = 0; i < allProduct.Count; i++)
-            {
-                productName[i] = ((Product)allProduct[i]).ProductName;
-            }
+            but_GetCustomer.Enabled = false;
+            cb_cusId.Visible = false;
+            cb_cusId.Enabled = false;
+            btn_add.Enabled = false;
+            btn_delete.Enabled = false;
+            e_custName.Enabled = false;
+            e_custName.ReadOnly = true;
+            listProduct = ProductsLAO.GetAllProducts();
         }
         /// <summary>
         /// add order
@@ -129,7 +142,36 @@ namespace xtreme
         private void btnAdd_Click(object sender, EventArgs e)
         {
             currentStatus = FormStatus.adding;
-            InitializeComponent();
+            CleanAllComponets();
+            but_GetCustomer.Enabled = true;
+            cb_cusId.Enabled = true;
+            cb_cusId.Visible = true;
+            btn_add.Enabled = true;
+            btn_delete.Enabled = true;
+            e_custName.Enabled = true;
+            comb_prod.Items.Clear();
+            comb_prod.Text = string.Empty;
+            e_custName.Enabled = true;
+            e_custName.ReadOnly = false;
+            extenstions.ClearControls(Controls);
+            if (listProduct.Count > 0)
+            {
+
+                string[] productNameString = new string[listProduct.Count];
+                for (int i = 0; i < listProduct.Count; i++)
+                {
+                    productNameString[i] = listProduct[i].ProductName;
+                }
+                this.comb_prod.Items.Clear();
+                this.comb_prod.Items.AddRange(productNameString);
+
+                this.comb_prod.SelectedIndex = 0;
+            }
+
+            setAddressEnable(true);
+
+          
+            
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -147,7 +189,14 @@ namespace xtreme
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-
+            currentStatus = FormStatus.nonstatus;
+            cb_cusId.Enabled = false;
+            cb_cusId.Visible = false;
+            btn_add.Enabled = false;
+            btn_delete.Enabled = false;
+            e_custName.Enabled = false;
+            e_custName.ReadOnly = true;
+            setAddressEnable(false);
         }
         /// <summary>
         /// Cancle
@@ -162,13 +211,12 @@ namespace xtreme
         //get customer by customer first name
         private void but_GetCustomer_Click(object sender, EventArgs e)
         {
-
+            listcostomer = CustomerLAO.GetCustomerByName(e_custName.Text);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int selectIndex = dataGridView1.CurrentRow.Index;
-            currentSelectedIndex = selectIndex;
             Order aOrder = new Order();
             aOrder = listOrder[selectIndex];
             SetOrderInformation(aOrder);
@@ -190,30 +238,123 @@ namespace xtreme
 
         }
 
+        private void cb_cusId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void o_status_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comb_prod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectIndexOfProduct = comb_prod.SelectedIndex;
+        }
+
+        private void setAddressEnable(bool status)
+        {
+            foreach (Control c in this.Controls)
+            {
+                if (c is GroupBox)
+                {
+                    foreach (Control a in c.Controls)
+                    {
+                        if ((a is GroupBox) && a.HasChildren)
+                        {
+                            foreach (Control b in a.Controls)
+                            {
+                                if (b is TextBox)
+                                {
+                                    b.Text = string.Empty;
+                                   // b.Enabled = status;
+                                   // ((TextBox)b).ReadOnly = !status;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// add a product for the list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_add_Click(object sender, EventArgs e)
         {
-            listTempProduct.Add(new TempProduct()
-            {
-                ProductName = comb_prod.SelectedText.ToString(),
-                ProductId = ((Product)allProduct[currentSelectedIndex]).ProductId,
-                Quantity = Int32.Parse(prod_qnt.Text)
-            });
+            showProdut.Add(new ShowProdut() { 
+                Name = listProduct[selectIndexOfProduct].ProductName,
+                ProductId=listProduct[selectIndexOfProduct].ProductId,
+                Quantiy=Int32.Parse(prod_qnt.Text)});
 
-            dataGridView1.DataSource = listTempProduct;
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = showProdut;
+
         }
 
+        /// <summary>
+        /// delete a product from list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_delete_Click(object sender, EventArgs e)
         {
-            listTempProduct.RemoveAt(currentSelectedIndex);
-            dataGridView1.DataSource = listTempProduct;
+            showProdut.RemoveAt(selectIndexOfProduct);
+            dataGridView1.Update();
         }
     }
-
-    class TempProduct 
+    public static class extenstions
     {
-        public int ProductId { get; set; }
-        public string ProductName { get; set; }
-        public int Quantity { get; set; }
-        
+        private static Dictionary<Type, Action<Control>> controldefaults = new Dictionary<Type, Action<Control>>() { 
+            {typeof(TextBox), c => ((TextBox)c).Clear()},
+            {typeof(CheckBox), c => ((CheckBox)c).Checked = false},
+            {typeof(ListBox), c => ((ListBox)c).Items.Clear()},
+            {typeof(RadioButton), c => ((RadioButton)c).Checked = false},
+            {typeof(GroupBox), c => ((GroupBox)c).Controls.ClearControls()},
+            {typeof(Panel), c => ((Panel)c).Controls.ClearControls()},
+            {typeof(DataGridView), c => ((DataGridView)c).DataSource= null}
+    };
+
+        private static void FindAndInvoke(Type type, Control control)
+        {
+            if (controldefaults.ContainsKey(type))
+            {
+                controldefaults[type].Invoke(control);
+            }
+        }
+
+        public static void ClearControls(this Control.ControlCollection controls)
+        {
+            foreach (Control control in controls)
+            {
+                FindAndInvoke(control.GetType(), control);
+            }
+        }
+
+        public static void ClearControls<T>(this Control.ControlCollection controls) where T : class
+        {
+            if (!controldefaults.ContainsKey(typeof(T))) return;
+
+            foreach (Control control in controls)
+            {
+                if (control.GetType().Equals(typeof(T)))
+                {
+                    FindAndInvoke(typeof(T), control);
+                }
+            }
+
+        }
+
     }
+
+    class ShowProdut
+    {
+        public int ProductId { get; set;}
+        public string Name { get; set; }
+        public int Quantiy { get; set; }
+    }
+        
 }
