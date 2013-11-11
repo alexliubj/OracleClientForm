@@ -131,8 +131,37 @@ namespace DataLogic.DataAccessLayer
         /// add order by order object
         /// </summary>
         /// <param name="ord"></param>
-        public void AddOrder(Order ord)
-        { }
+        public void AddOrder(Order ord, List<OrderLines> lines)
+        {
+            try
+            {       
+                OracleCommand commn = dataConnection.ConnectToDatabase("insert into orders values (:ORDERID,:ORDERDATE,:SHIPDATE,:STATUS,:DISCOUNT,:EMPLOYEEID,:CUSTOMERID)");
+                commn.Parameters.Add(new OracleParameter("ORDERID", ord.OrderId));
+                commn.Parameters.Add(new OracleParameter("ORDERDATE", ord.OrderDate));
+                commn.Parameters.Add(new OracleParameter("SHIPDATE", ord.ShipDate));
+                commn.Parameters.Add(new OracleParameter("STATUS", ord.Status));
+                commn.Parameters.Add(new OracleParameter("DISCOUNT", ord.Discount));
+                commn.Parameters.Add(new OracleParameter("EMPLOYEEID", ord.EmployeeId));
+                commn.Parameters.Add(new OracleParameter("CUSTOMERID", ord.customerId));
+
+                string sss = commn.ToString();
+                int result = commn.ExecuteNonQuery();
+                foreach (OrderLines line in lines)
+                {
+                    commn = dataConnection.ConnectToDatabase("insert into orderline values (:ORDERLINEID,:ORDERID,:PRODUCTID,:UNITPRICE,:QUANTITY)");
+                    commn.Parameters.Add(new OracleParameter("ORDERLINEID", line.OrderLineId));
+                    commn.Parameters.Add(new OracleParameter("ORDERID", line.OrderId));
+                    commn.Parameters.Add(new OracleParameter("PRODUCTID", line.ProductId));
+                    commn.Parameters.Add(new OracleParameter("UNITPRICE", line.UnitPrice));
+                    commn.Parameters.Add(new OracleParameter("QUANTITY", cust.ShipInfo.ShippingState));
+                    result = commn.ExecuteNonQuery();
+                }
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
+        }
         /// <summary>
         /// remove order by order id
         /// </summary>
@@ -144,7 +173,8 @@ namespace DataLogic.DataAccessLayer
         /// </summary>
         /// <param name="ord"></param>
         public void UpdateOrder(Order ord)
-        { }
+        {
+        }
 
         /// <summary>
         /// A display identifying the top *

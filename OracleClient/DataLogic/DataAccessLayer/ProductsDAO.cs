@@ -16,7 +16,6 @@ namespace DataLogic.DataAccessLayer
         public List<Product> getProductslist()
         {
             List<Product> productList =new List<Product>();
-            List<OrderLines> aLine = new List<OrderLines>();
             try
             {
                 OracleCommand commn = dataConnection.ConnectToDatabase();
@@ -50,7 +49,27 @@ namespace DataLogic.DataAccessLayer
         /// <returns></returns>
         public Product getProductById(int productId)
         {
-            return new Product();
+            Product aProduct = new Product();
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase();
+                commn.CommandText = "select * from product where prouctid =" + productId;
+                OracleDataReader odr = commn.ExecuteReader();
+                while (odr.Read())
+                {
+                    aProduct.ProductId = odr.GetInt32(0);
+                    aProduct.Instruction = odr.GetString(1);
+                    aProduct.UnitPrice = odr.GetFloat(2);
+                    aProduct.UnitType = odr.GetString(3);
+                    aProduct.ProductName = odr.GetString(4);
+                }
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
+
+            return aProduct;
         }
 
         /// <summary>

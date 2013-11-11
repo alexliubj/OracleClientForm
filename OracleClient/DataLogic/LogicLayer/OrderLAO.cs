@@ -14,9 +14,9 @@ namespace DataLogic.LogicLayer
         /// viii. Enter a new orders, 
         /// </summary>
         /// <param name="order"></param>
-        public static void CreateNewOrder(Order order)
+        public static void CreateNewOrder(Order order, List<OrderLines> line)
         {
-            dao.AddOrder(order);
+            dao.AddOrder(order,line);
         }
 
         public static List<Order> GetAllOrders()
