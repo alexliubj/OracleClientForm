@@ -77,7 +77,26 @@ namespace DataLogic.DataAccessLayer
         /// </summary>
         /// <param name="prod"></param>
         public void InsertProduct(Product prod)
-        { 
+        {
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase("insert into product values (:productid,:INSTRUCTION,:UNITPRICE,:UNITTYPE,:PRODUCTNAME)");
+                commn.Parameters.Add(new OracleParameter("PRODUCTID", prod.ProductId));
+                commn.Parameters.Add(new OracleParameter("INSTRUCTION", prod.Instruction));
+                commn.Parameters.Add(new OracleParameter("UNITPRICE", prod.UnitPrice));
+                commn.Parameters.Add(new OracleParameter("UNITTYPE", prod.UnitType));
+                commn.Parameters.Add(new OracleParameter("PRODUCTNAME", prod.ProductName));
+
+                int result = commn.ExecuteNonQuery();
+
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally
+            {
+                dataConnection.CloseDatabase();
+            }
         }
 
         /// <summary>
@@ -86,14 +105,42 @@ namespace DataLogic.DataAccessLayer
         /// <param name="prod"></param>
         public void UpdateProduct(Product prod)
         {
- 
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase("update product set INSTRUCTION=:INSTRUCTION,UNITPRICE=:UNITPRICE,UNITTYPE=:UNITTYPE,PRODUCTNAME=:PRODUCTNAME where PRODUCTID=:PRODUCTID");
+                commn.Parameters.Add(new OracleParameter("PRODUCTID", prod.ProductId));
+                commn.Parameters.Add(new OracleParameter("INSTRUCTION", prod.Instruction));
+                commn.Parameters.Add(new OracleParameter("UNITPRICE", prod.UnitPrice));
+                commn.Parameters.Add(new OracleParameter("UNITTYPE", prod.UnitType));
+                commn.Parameters.Add(new OracleParameter("PRODUCTNAME", prod.ProductName));
+
+                int result = commn.ExecuteNonQuery();
+
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally
+            {
+                dataConnection.CloseDatabase();
+            }
         }
         /// <summary>
         /// A form permitting a mass price increase of x% for all products, 
         /// </summary>
         /// <param name="rate"></param>
         public void UpdateAllPriceByRate(float rate)
-        { 
+        {
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase();
+                commn.CommandText = "update product set unitprice = unitprice*" + rate;
+                int result = commn.ExecuteNonQuery();
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
         }
 
         /// <summary>
@@ -101,7 +148,17 @@ namespace DataLogic.DataAccessLayer
         /// </summary>
         /// <param name="productId"></param>
         public void RomoveProductById(int productId)
-        { 
+        {
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase();
+                commn.CommandText = "delete from product where productid = " + productId;
+                int result = commn.ExecuteNonQuery();
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
         }
     }
 }

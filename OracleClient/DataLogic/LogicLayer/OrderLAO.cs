@@ -65,10 +65,34 @@ namespace DataLogic.LogicLayer
         {
             return dao.GetOrderByDate(daysForm, daysTo);
         }
-
+        /// <summary>
+        /// get order lines by orderid 
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
         public static List<OrderLines> GetLinesByOrderId(int orderId)
         {
             return dao.GetLinesByOrderId(orderId);
+        }
+
+        /// <summary>
+        /// update order by order and order lines
+        /// </summary>
+        /// <param name="ord"></param>
+        /// <param name="lines"></param>
+        public static void UpdateOrder(Order ord, List<OrderLines> lines)
+        {
+            dao.UpdateOrder(ord, lines);
+        }
+
+        /// <summary>
+        /// update order status
+        /// </summary>
+        /// <param name="status"></param>
+        /// <param name="orderId"></param>
+        public static void UpdateOrderStatus(int status, int orderId)
+        {
+            dao.UpdateOrderStatus(status, orderId);
         }
     }
 }

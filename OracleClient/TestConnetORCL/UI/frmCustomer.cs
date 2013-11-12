@@ -168,6 +168,10 @@ namespace xtreme
 
         }
 
+        private void SetPrice()
+        { 
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int selectIndex = dataGridView1.CurrentRow.Index;

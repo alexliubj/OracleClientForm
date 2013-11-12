@@ -64,7 +64,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.txt_Total = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.txt_hst = new System.Windows.Forms.TextBox();
             this.txt_GrandTotal = new System.Windows.Forms.TextBox();
             this.txt_Rate = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -117,7 +117,7 @@
             this.groupBox2.Controls.Add(this.City);
             this.groupBox2.Controls.Add(this.txt_Add);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(17, 111);
+            this.groupBox2.Location = new System.Drawing.Point(20, 111);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(432, 115);
             this.groupBox2.TabIndex = 34;
@@ -356,7 +356,7 @@
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Controls.Add(this.txt_Total);
             this.groupBox1.Controls.Add(this.label24);
-            this.groupBox1.Controls.Add(this.textBox10);
+            this.groupBox1.Controls.Add(this.txt_hst);
             this.groupBox1.Controls.Add(this.txt_GrandTotal);
             this.groupBox1.Controls.Add(this.txt_Rate);
             this.groupBox1.Controls.Add(this.label15);
@@ -470,13 +470,14 @@
             this.label24.TabIndex = 55;
             this.label24.Text = "Total:";
             // 
-            // textBox10
+            // txt_hst
             // 
-            this.textBox10.Location = new System.Drawing.Point(523, 488);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(77, 20);
-            this.textBox10.TabIndex = 54;
+            this.txt_hst.Location = new System.Drawing.Point(523, 488);
+            this.txt_hst.Name = "txt_hst";
+            this.txt_hst.ReadOnly = true;
+            this.txt_hst.Size = new System.Drawing.Size(77, 20);
+            this.txt_hst.TabIndex = 54;
+            this.txt_hst.Text = "13%";
             // 
             // txt_GrandTotal
             // 
@@ -810,7 +811,7 @@
         private System.Windows.Forms.TextBox e_cust;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox txt_hst;
         private System.Windows.Forms.TextBox txt_GrandTotal;
         private System.Windows.Forms.TextBox txt_Rate;
         private System.Windows.Forms.Label label15;

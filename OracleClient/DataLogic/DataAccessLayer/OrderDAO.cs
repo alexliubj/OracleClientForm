@@ -153,7 +153,7 @@ namespace DataLogic.DataAccessLayer
                     commn.Parameters.Add(new OracleParameter("ORDERID", line.OrderId));
                     commn.Parameters.Add(new OracleParameter("PRODUCTID", line.ProductId));
                     commn.Parameters.Add(new OracleParameter("UNITPRICE", line.UnitPrice));
-                    commn.Parameters.Add(new OracleParameter("QUANTITY", cust.ShipInfo.ShippingState));
+                    commn.Parameters.Add(new OracleParameter("QUANTITY", line.Quantity));
                     result = commn.ExecuteNonQuery();
                 }
                 dataConnection.CloseDatabase();
@@ -172,9 +172,58 @@ namespace DataLogic.DataAccessLayer
         /// update order by order object
         /// </summary>
         /// <param name="ord"></param>
-        public void UpdateOrder(Order ord)
+        public void UpdateOrder(Order ord, List<OrderLines> lines)
         {
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase("updete order set (ORDERDATE=:ORDERDATE,SHIPDATE=:SHIPDATE,STATUS=:STATUS,DISCOUNT=:DISCOUNT,EMPLOYEEID=:EMPLOYEEID,CUSTOMERID=:CUSTOMERID where ORDERID = :ORDERID");
+                commn.Parameters.Add(new OracleParameter("ORDERID", ord.OrderId));
+                commn.Parameters.Add(new OracleParameter("ORDERDATE", ord.OrderDate));
+                commn.Parameters.Add(new OracleParameter("SHIPDATE", ord.ShipDate));
+                commn.Parameters.Add(new OracleParameter("STATUS", ord.Status));
+                commn.Parameters.Add(new OracleParameter("DISCOUNT", ord.Discount));
+                commn.Parameters.Add(new OracleParameter("EMPLOYEEID", ord.EmployeeId));
+                commn.Parameters.Add(new OracleParameter("CUSTOMERID", ord.customerId));
+
+                string sss = commn.ToString();
+                int result = commn.ExecuteNonQuery();
+                foreach (OrderLines line in lines)
+                {
+                    commn = dataConnection.ConnectToDatabase("update orderline set ORDERLINEID=:ORDERLINEID,PRODUCTID=:PRODUCTID,UNITPRICE=:UNITPRICE,QUANTITY=:QUANTITY where orderid=:orderid");
+                    commn.Parameters.Add(new OracleParameter("ORDERLINEID", line.OrderLineId));
+                    commn.Parameters.Add(new OracleParameter("ORDERID", line.OrderId));
+                    commn.Parameters.Add(new OracleParameter("PRODUCTID", line.ProductId));
+                    commn.Parameters.Add(new OracleParameter("UNITPRICE", line.UnitPrice));
+                    commn.Parameters.Add(new OracleParameter("QUANTITY", line.Quantity));
+                    result = commn.ExecuteNonQuery();
+                }
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
         }
+
+        /// <summary>
+        /// update order by order object
+        /// </summary>
+        /// <param name="ord"></param>
+        public void UpdateOrderStatus(int status, int orderId)
+        {
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase();
+                commn.CommandText = "update orders set STATUS=" + status + " where orderid =" + orderId;
+
+                int result = commn.ExecuteNonQuery();
+               
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
+        }
+
 
         /// <summary>
         /// A display identifying the top *

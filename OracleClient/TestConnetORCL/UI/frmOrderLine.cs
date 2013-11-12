@@ -46,7 +46,27 @@ namespace xtreme
         }
 
         private void UpdateBottomInformation()
-        { 
+        {
+            float grantPrcie = 0.0f;
+            float totalPrice = 0.0f;
+            if (currentStatus == FormStatus.adding)
+            {
+                foreach (ShowProdut ol in showProdut)
+                {
+                    grantPrcie += ol.UnitPrice;
+                }
+            }
+            if (currentStatus == FormStatus.editing || currentStatus == FormStatus.nonstatus)
+            {
+                foreach (OrderLines ol in orderLine)
+                {
+                    grantPrcie += ol.UnitPrice;
+                }
+            }
+            totalPrice = grantPrcie * ((txt_Rate.Text == string.Empty) ? 1 : float.Parse(txt_Rate.Text)) * 1.13f;
+            txt_hst.Text = "13%";
+            txt_GrandTotal.Text = grantPrcie.ToString();
+            txt_Total.Text = totalPrice.ToString();
         }
         private void ComboBox1_SelectedIndexChanged(object sender,
             System.EventArgs e)
@@ -124,6 +144,7 @@ namespace xtreme
         private void InitializeAllData()
         {
             listOrder = OrderLAO.GetAllOrders();
+            dataGridView1.DataSource = null;
             dataGridView1.DataSource = listOrder;
             but_GetCustomer.Enabled = false;
             cb_cusId.Visible = false;
@@ -141,6 +162,7 @@ namespace xtreme
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            showProdut.Clear();
             currentStatus = FormStatus.adding;
             CleanAllComponets();
             but_GetCustomer.Enabled = true;
@@ -156,13 +178,13 @@ namespace xtreme
             extenstions.ClearControls(Controls);
             if (listProduct.Count > 0)
             {
-
+                this.comb_prod.Items.Clear();
                 string[] productNameString = new string[listProduct.Count];
                 for (int i = 0; i < listProduct.Count; i++)
                 {
                     productNameString[i] = listProduct[i].ProductName;
                 }
-                this.comb_prod.Items.Clear();
+                
                 this.comb_prod.Items.AddRange(productNameString);
 
                 this.comb_prod.SelectedIndex = 0;
@@ -189,15 +211,61 @@ namespace xtreme
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            currentStatus = FormStatus.nonstatus;
-            cb_cusId.Enabled = false;
-            cb_cusId.Visible = false;
-            btn_add.Enabled = false;
-            btn_delete.Enabled = false;
-            e_custName.Enabled = false;
-            e_custName.ReadOnly = true;
-            setAddressEnable(false);
+            if (currentStatus == FormStatus.adding)
+            {
+                currentStatus = FormStatus.nonstatus;
+                cb_cusId.Enabled = false;
+                cb_cusId.Visible = false;
+                btn_add.Enabled = false;
+                btn_delete.Enabled = false;
+                e_custName.Enabled = false;
+                e_custName.ReadOnly = true;
+                OrderLAO.CreateNewOrder(GenerateOrder(), GenerateOrderLine());
+                e_custName.Text = string.Empty;
+                e_cust.Text = string.Empty;
+                cb_cusId.Text = string.Empty;
+                setAddressEnable(false);
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = listOrder;
+                listcostomer.Clear();
+            }
+            if (currentStatus == FormStatus.editing)
+            {
+                OrderLAO.UpdateOrderStatus(o_status.SelectedIndex, Int32.Parse(o_number.Text));
+                listOrder = OrderLAO.GetAllOrders();
+                
+            }
         }
+
+
+        private Order GenerateOrder()
+        {
+            Order retOrder = new Order();
+            retOrder.customerId = Int32.Parse(e_cust.Text);
+            retOrder.Discount = float.Parse((txt_Rate.Text == string.Empty) ? "0" : txt_Rate.Text);
+            retOrder.EmployeeId = Int32.Parse(o_emp.Text==string.Empty ? "0" : txt_Rate.Text);
+            retOrder.OrderDate = DateTime.Now;
+            retOrder.OrderId = Int32.Parse(o_number.Text);
+
+            return retOrder;
+        }
+
+        private List<OrderLines> GenerateOrderLine()
+        {
+            List<OrderLines> listOrderLine = new List<OrderLines>();
+
+            foreach (ShowProdut sp in showProdut)
+            {
+                OrderLines ol = new OrderLines();
+                ol.Quantity = sp.Quantiy;
+                ol.UnitPrice = sp.UnitPrice;
+                ol.ProductId = sp.ProductId;
+                ol.OrderId = Int32.Parse(o_number.Text);
+                listOrderLine.Add(ol);
+            }
+            return listOrderLine;
+        }
+
         /// <summary>
         /// Cancle
         /// </summary>
@@ -212,20 +280,49 @@ namespace xtreme
         private void but_GetCustomer_Click(object sender, EventArgs e)
         {
             listcostomer = CustomerLAO.GetCustomerByName(e_custName.Text);
+
+            cb_cusId.Items.Clear();
+            cb_cusId.Enabled = true;
+            cb_cusId.Visible = true;
+
+            if (listcostomer.Count > 0)
+            {
+                string[] customerIdlist = new string[listcostomer.Count];
+                for (int i = 0; i < listcostomer.Count; i++)
+                {
+                    customerIdlist[i] = ((Customer)(listcostomer[i])).CustomerId.ToString();
+                }
+
+                this.cb_cusId.Items.AddRange(customerIdlist);
+                this.cb_cusId.SelectedIndex = 0;
+
+                Customer aCusotomer = new Customer();
+                aCusotomer = listcostomer[0];
+                SetCustomerInformation(aCusotomer);
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int selectIndex = dataGridView1.CurrentRow.Index;
-            Order aOrder = new Order();
-            aOrder = listOrder[selectIndex];
-            SetOrderInformation(aOrder);
-            Customer cusotmerInformation = new Customer();
-            cusotmerInformation = CustomerLAO.getCustoemerById(aOrder.customerId);
-            SetCustomerInformation(cusotmerInformation);
-            orderLine = new List<OrderLines>();
-            orderLine = OrderLAO.GetLinesByOrderId(aOrder.OrderId);
-            SetAllProductInformation();
+            if (currentStatus == FormStatus.editing || currentStatus == FormStatus.nonstatus)
+            {
+                int selectIndex = dataGridView1.CurrentRow.Index;
+                Order aOrder = new Order();
+                aOrder = listOrder[selectIndex];
+                SetOrderInformation(aOrder);
+                Customer cusotmerInformation = new Customer();
+                cusotmerInformation = CustomerLAO.getCustoemerById(aOrder.customerId);
+                SetCustomerInformation(cusotmerInformation);
+                orderLine = new List<OrderLines>();
+                orderLine = OrderLAO.GetLinesByOrderId(aOrder.OrderId);
+                SetAllProductInformation();
+                currentStatus = FormStatus.editing;
+                UpdateBottomInformation();
+            }
+            if (currentStatus == FormStatus.adding)
+            {
+                selectIndexOfProduct = dataGridView1.CurrentRow.Index;
+            }
         }
 
         /// <summary>
@@ -240,7 +337,9 @@ namespace xtreme
 
         private void cb_cusId_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Customer aCusotomer = new Customer();
+            aCusotomer = listcostomer[cb_cusId.SelectedIndex];
+            SetCustomerInformation(aCusotomer);
         }
 
         private void o_status_SelectedIndexChanged(object sender, EventArgs e)
@@ -285,14 +384,29 @@ namespace xtreme
         /// <param name="e"></param>
         private void btn_add_Click(object sender, EventArgs e)
         {
-            showProdut.Add(new ShowProdut() { 
-                Name = listProduct[selectIndexOfProduct].ProductName,
-                ProductId=listProduct[selectIndexOfProduct].ProductId,
-                Quantiy=Int32.Parse(prod_qnt.Text)});
+            if (Int32.Parse(prod_qnt.Text)>0)
+            {
+                bool inList = false;
+                foreach (ShowProdut sp in showProdut)
+                {
+                    if (listProduct[selectIndexOfProduct].ProductId == sp.ProductId)
+                        inList = true;
+                }
 
+                if (!inList)
+                {
+                    showProdut.Add(new ShowProdut()
+                    {
+                        Name = listProduct[selectIndexOfProduct].ProductName,
+                        ProductId = listProduct[selectIndexOfProduct].ProductId,
+                        Quantiy = Int32.Parse(prod_qnt.Text),
+                        UnitPrice = listProduct[selectIndexOfProduct].UnitPrice
+                    });
+                }
+            }
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = showProdut;
-
+            UpdateBottomInformation();
         }
 
         /// <summary>
@@ -302,8 +416,10 @@ namespace xtreme
         /// <param name="e"></param>
         private void btn_delete_Click(object sender, EventArgs e)
         {
-            showProdut.RemoveAt(selectIndexOfProduct);
-            dataGridView1.Update();
+            showProdut.RemoveAt(dataGridView1.CurrentRow.Index);
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = showProdut;
+            UpdateBottomInformation();
         }
     }
     public static class extenstions
@@ -355,6 +471,7 @@ namespace xtreme
         public int ProductId { get; set;}
         public string Name { get; set; }
         public int Quantiy { get; set; }
+        public float UnitPrice { get; set; }
     }
         
 }
