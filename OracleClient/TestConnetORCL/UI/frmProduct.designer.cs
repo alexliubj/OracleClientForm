@@ -47,6 +47,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txt_id = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.txt_descrip = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -57,8 +58,10 @@
             this.dataGridView1.Location = new System.Drawing.Point(29, 153);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(701, 301);
             this.dataGridView1.TabIndex = 11;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // txt_Name
             // 
@@ -78,7 +81,6 @@
             // 
             // butPrint
             // 
-            this.butPrint.Enabled = false;
             this.butPrint.Image = ((System.Drawing.Image)(resources.GetObject("butPrint.Image")));
             this.butPrint.Location = new System.Drawing.Point(639, 520);
             this.butPrint.Name = "butPrint";
@@ -86,6 +88,7 @@
             this.butPrint.TabIndex = 28;
             this.butPrint.Text = "Print";
             this.butPrint.UseVisualStyleBackColor = true;
+            this.butPrint.Click += new System.EventHandler(this.butPrint_Click);
             // 
             // label1
             // 
@@ -100,7 +103,6 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Enabled = false;
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
             this.btnCancel.Location = new System.Drawing.Point(510, 520);
             this.btnCancel.Name = "btnCancel";
@@ -108,6 +110,7 @@
             this.btnCancel.TabIndex = 27;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnAdd
             // 
@@ -118,10 +121,10 @@
             this.btnAdd.TabIndex = 23;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Enabled = false;
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.Location = new System.Drawing.Point(389, 520);
             this.btnSave.Name = "btnSave";
@@ -129,6 +132,7 @@
             this.btnSave.TabIndex = 26;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnDelete
             // 
@@ -139,9 +143,11 @@
             this.btnDelete.TabIndex = 25;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txt_descrip);
             this.groupBox1.Controls.Add(this.list_Details);
             this.groupBox1.Controls.Add(this.txt_Price);
             this.groupBox1.Controls.Add(this.label5);
@@ -167,6 +173,7 @@
             this.list_Details.Name = "list_Details";
             this.list_Details.Size = new System.Drawing.Size(384, 82);
             this.list_Details.TabIndex = 30;
+            this.list_Details.Visible = false;
             // 
             // txt_Price
             // 
@@ -225,6 +232,14 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Product ID";
             // 
+            // txt_descrip
+            // 
+            this.txt_descrip.Location = new System.Drawing.Point(343, 52);
+            this.txt_descrip.Multiline = true;
+            this.txt_descrip.Name = "txt_descrip";
+            this.txt_descrip.Size = new System.Drawing.Size(387, 82);
+            this.txt_descrip.TabIndex = 31;
+            // 
             // frmProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,5 +284,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_Unit;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txt_descrip;
     }
 }
