@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using DataLogic.DataAccessLayer;
 using DataLogic.LogicLayer;
 using DataLogic.Model;
+using TestConnetORCL.Report;
+using System.Reflection;
 
 
 namespace xtreme
@@ -53,7 +55,34 @@ namespace xtreme
 
         private void butGPA_Click(object sender, EventArgs e)
         {
+            DataSet1.OrderDataTable dt = new DataSet1.OrderDataTable();
+            dt = (DataSet1.OrderDataTable)SetOrderDetails(listOrder);
+            OrderReportForm rf = new OrderReportForm(dt);
+            rf.Show();
+        }
 
+        public static DataTable SetOrderDetails(List<Order> orderlist)
+        {
+            DataSet1.OrderDataTable dt = new DataSet1.OrderDataTable();
+            try
+            {
+                foreach (var cust in orderlist)
+                {
+                    DataRow newRow = dt.NewRow();
+                    foreach (PropertyInfo property in cust.GetType().GetProperties())
+                    {
+                        if (property.Name != "OrderLine")
+                            newRow[property.Name] = cust.GetType().GetProperty(property.Name).GetValue(cust, null);
+                    }
+                    dt.Rows.Add(newRow);
+                }
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return null;
+            }
         }
     }
 }

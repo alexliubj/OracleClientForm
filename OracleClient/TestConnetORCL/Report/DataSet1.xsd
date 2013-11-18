@@ -42,6 +42,19 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Order" msprop:Generator_TableClassName="OrderDataTable" msprop:Generator_TableVarName="tableOrder" msprop:Generator_TablePropName="Order" msprop:Generator_RowDeletingName="OrderRowDeleting" msprop:Generator_RowChangingName="OrderRowChanging" msprop:Generator_RowEvHandlerName="OrderRowChangeEventHandler" msprop:Generator_RowDeletedName="OrderRowDeleted" msprop:Generator_UserTableName="Order" msprop:Generator_RowChangedName="OrderRowChanged" msprop:Generator_RowEvArgName="OrderRowChangeEvent" msprop:Generator_RowClassName="OrderRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OrderId" msprop:Generator_ColumnVarNameInTable="columnOrderId" msprop:Generator_ColumnPropNameInRow="OrderId" msprop:Generator_ColumnPropNameInTable="OrderIdColumn" msprop:Generator_UserColumnName="OrderId" type="xs:string" minOccurs="0" />
+              <xs:element name="OrderDate" msprop:Generator_ColumnVarNameInTable="columnOrderDate" msprop:Generator_ColumnPropNameInRow="OrderDate" msprop:Generator_ColumnPropNameInTable="OrderDateColumn" msprop:Generator_UserColumnName="OrderDate" type="xs:string" minOccurs="0" />
+              <xs:element name="ShipDate" msprop:Generator_ColumnVarNameInTable="columnShipDate" msprop:Generator_ColumnPropNameInRow="ShipDate" msprop:Generator_ColumnPropNameInTable="ShipDateColumn" msprop:Generator_UserColumnName="ShipDate" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
+              <xs:element name="Discount" msprop:Generator_ColumnVarNameInTable="columnDiscount" msprop:Generator_ColumnPropNameInRow="Discount" msprop:Generator_ColumnPropNameInTable="DiscountColumn" msprop:Generator_UserColumnName="Discount" type="xs:string" minOccurs="0" />
+              <xs:element name="customerId" msprop:Generator_ColumnVarNameInTable="columncustomerId" msprop:Generator_ColumnPropNameInRow="customerId" msprop:Generator_ColumnPropNameInTable="customerIdColumn" msprop:Generator_UserColumnName="customerId" type="xs:string" minOccurs="0" />
+              <xs:element name="EmployeeId" msprop:Generator_ColumnVarNameInTable="columnEmployeeId" msprop:Generator_ColumnPropNameInRow="EmployeeId" msprop:Generator_ColumnPropNameInTable="EmployeeIdColumn" msprop:Generator_UserColumnName="EmployeeId" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>

@@ -36,3 +36,4 @@ C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClien
 C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\TestConnetORCL\obj\x86\Debug\ORCLFORM.csproj.GenerateResource.Cache
 C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\TestConnetORCL\obj\x86\Debug\TestConnetORCL.exe
 C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\TestConnetORCL\obj\x86\Debug\TestConnetORCL.pdb
+C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\TestConnetORCL\obj\x86\Debug\TestConnetORCL.Report.OrderReportForm.resources
