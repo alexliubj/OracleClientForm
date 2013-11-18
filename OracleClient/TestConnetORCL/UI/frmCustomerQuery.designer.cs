@@ -33,9 +33,10 @@
             this.btnQuery = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.textBox_code = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnPrint = new System.Windows.Forms.Button();
+            
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -60,6 +61,7 @@
             this.btnQuery.TabIndex = 3;
             this.btnQuery.Text = "Query";
             this.btnQuery.UseVisualStyleBackColor = true;
+            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
             // label2
             // 
@@ -84,6 +86,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Customer Query";
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Image")));
+            this.btnPrint.Location = new System.Drawing.Point(458, 20);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(75, 25);
+            this.btnPrint.TabIndex = 6;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // textBox_code
             // 
             this.textBox_code.Location = new System.Drawing.Point(117, 23);
@@ -99,16 +112,6 @@
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(692, 344);
             this.dataGridView1.TabIndex = 4;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Image")));
-            this.btnPrint.Location = new System.Drawing.Point(458, 20);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(75, 25);
-            this.btnPrint.TabIndex = 6;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.UseVisualStyleBackColor = true;
             // 
             // frmCustomerQuery
             // 
@@ -138,5 +141,6 @@
         private System.Windows.Forms.TextBox textBox_code;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnPrint;
+        private TestConnetORCL.Report.CustomerReport customerReport1;
     }
 }

@@ -32,11 +32,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chk_Pending = new System.Windows.Forms.CheckBox();
             this.cbx_id = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.butGPA = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.chk_Pending = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -61,6 +61,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Query";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox1
             // 
@@ -76,6 +77,16 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Order Query";
+            // 
+            // chk_Pending
+            // 
+            this.chk_Pending.AutoSize = true;
+            this.chk_Pending.Location = new System.Drawing.Point(290, 33);
+            this.chk_Pending.Name = "chk_Pending";
+            this.chk_Pending.Size = new System.Drawing.Size(112, 17);
+            this.chk_Pending.TabIndex = 24;
+            this.chk_Pending.Text = "Outstanding Order";
+            this.chk_Pending.UseVisualStyleBackColor = true;
             // 
             // cbx_id
             // 
@@ -103,6 +114,7 @@
             this.butGPA.TabIndex = 7;
             this.butGPA.Text = "Aging Report";
             this.butGPA.UseVisualStyleBackColor = true;
+            this.butGPA.Click += new System.EventHandler(this.butGPA_Click);
             // 
             // dataGridView1
             // 
@@ -112,16 +124,6 @@
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(711, 370);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // chk_Pending
-            // 
-            this.chk_Pending.AutoSize = true;
-            this.chk_Pending.Location = new System.Drawing.Point(290, 33);
-            this.chk_Pending.Name = "chk_Pending";
-            this.chk_Pending.Size = new System.Drawing.Size(112, 17);
-            this.chk_Pending.TabIndex = 24;
-            this.chk_Pending.Text = "Outstanding Order";
-            this.chk_Pending.UseVisualStyleBackColor = true;
             // 
             // frmOrderQuery
             // 

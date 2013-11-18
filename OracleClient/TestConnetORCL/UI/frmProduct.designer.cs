@@ -32,13 +32,13 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txt_Name = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.butPrint = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txt_descrip = new System.Windows.Forms.TextBox();
             this.list_Details = new System.Windows.Forms.ListBox();
             this.txt_Price = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,16 +47,19 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txt_id = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txt_descrip = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(29, 153);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(701, 301);
@@ -78,17 +81,6 @@
             this.label6.Size = new System.Drawing.Size(75, 13);
             this.label6.TabIndex = 22;
             this.label6.Text = "Product Name";
-            // 
-            // butPrint
-            // 
-            this.butPrint.Image = ((System.Drawing.Image)(resources.GetObject("butPrint.Image")));
-            this.butPrint.Location = new System.Drawing.Point(639, 520);
-            this.butPrint.Name = "butPrint";
-            this.butPrint.Size = new System.Drawing.Size(75, 25);
-            this.butPrint.TabIndex = 28;
-            this.butPrint.Text = "Print";
-            this.butPrint.UseVisualStyleBackColor = true;
-            this.butPrint.Click += new System.EventHandler(this.butPrint_Click);
             // 
             // label1
             // 
@@ -166,6 +158,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Product Information";
             // 
+            // txt_descrip
+            // 
+            this.txt_descrip.Location = new System.Drawing.Point(343, 52);
+            this.txt_descrip.Multiline = true;
+            this.txt_descrip.Name = "txt_descrip";
+            this.txt_descrip.Size = new System.Drawing.Size(387, 82);
+            this.txt_descrip.TabIndex = 31;
+            // 
             // list_Details
             // 
             this.list_Details.FormattingEnabled = true;
@@ -232,20 +232,11 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Product ID";
             // 
-            // txt_descrip
-            // 
-            this.txt_descrip.Location = new System.Drawing.Point(343, 52);
-            this.txt_descrip.Multiline = true;
-            this.txt_descrip.Name = "txt_descrip";
-            this.txt_descrip.Size = new System.Drawing.Size(387, 82);
-            this.txt_descrip.TabIndex = 31;
-            // 
             // frmProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 571);
-            this.Controls.Add(this.butPrint);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
@@ -269,7 +260,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox txt_Name;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button butPrint;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAdd;

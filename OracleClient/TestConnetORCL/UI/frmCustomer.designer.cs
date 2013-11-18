@@ -72,7 +72,6 @@
             this.txt_Name = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.butPrint = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -486,22 +485,11 @@
             this.dataGridView1.TabIndex = 11;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // butPrint
-            // 
-            this.butPrint.Image = ((System.Drawing.Image)(resources.GetObject("butPrint.Image")));
-            this.butPrint.Location = new System.Drawing.Point(642, 518);
-            this.butPrint.Name = "butPrint";
-            this.butPrint.Size = new System.Drawing.Size(75, 25);
-            this.butPrint.TabIndex = 20;
-            this.butPrint.Text = "Print";
-            this.butPrint.UseVisualStyleBackColor = true;
-            // 
             // frmCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 557);
-            this.Controls.Add(this.butPrint);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
@@ -537,7 +525,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button butPrint;
         private System.Windows.Forms.TextBox txt_Name;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txt_post;

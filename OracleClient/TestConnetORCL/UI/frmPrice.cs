@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataLogic.DataAccessLayer;
+using DataLogic.LogicLayer;
+using DataLogic.Model;
+
 
 namespace xtreme
 {
@@ -15,6 +19,16 @@ namespace xtreme
         public frmPrice()
         {
             InitializeComponent();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            ProductsLAO.UpdateAllPrice(float.Parse(textBox1.Text));
         }
     }
 }

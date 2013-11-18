@@ -17,6 +17,7 @@ namespace DataLogic.LogicLayer
         {
             prodDao.InsertProduct(prod);
         }
+        
         /// <summary>
         /// v. Display all data for a product, 
         /// </summary>
@@ -26,6 +27,12 @@ namespace DataLogic.LogicLayer
         {
             return prodDao.getProductById(prodId);
         }
+
+        public static Product getProductByName(string name)
+        {
+            return prodDao.getProductByName(name);
+        }
+
         /// <summary>
         /// v.  modify all data for a product, 
         /// </summary>
@@ -49,6 +56,11 @@ namespace DataLogic.LogicLayer
         public static void UpdateAllPrice(float rate)
         {
             prodDao.UpdateAllPriceByRate(rate);
+        }
+
+        public static void RemoveProductById(int productId)
+        {
+            prodDao.RomoveProductById(productId);
         }
     }
 }

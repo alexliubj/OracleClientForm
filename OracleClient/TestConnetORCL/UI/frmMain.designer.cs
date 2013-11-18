@@ -40,6 +40,10 @@
             this.OrderLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OrderQueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.orderAgingReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.top10OutstandingCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.outstandingOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,10 +52,6 @@
             this.btn_Order = new System.Windows.Forms.Button();
             this.btn_Product = new System.Windows.Forms.Button();
             this.btn_Report = new System.Windows.Forms.Button();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.orderAgingReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.top10OutstandingCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.outstandingOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -147,6 +147,35 @@
             this.OrderQueryToolStripMenuItem.Text = "Order Query";
             this.OrderQueryToolStripMenuItem.Click += new System.EventHandler(this.GradeQueryToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.orderAgingReportToolStripMenuItem,
+            this.top10OutstandingCustomerToolStripMenuItem,
+            this.outstandingOrderToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(119, 20);
+            this.toolStripMenuItem1.Text = "Report Manager(&R)";
+            // 
+            // orderAgingReportToolStripMenuItem
+            // 
+            this.orderAgingReportToolStripMenuItem.Name = "orderAgingReportToolStripMenuItem";
+            this.orderAgingReportToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.orderAgingReportToolStripMenuItem.Text = "Order Aging Report";
+            // 
+            // top10OutstandingCustomerToolStripMenuItem
+            // 
+            this.top10OutstandingCustomerToolStripMenuItem.Name = "top10OutstandingCustomerToolStripMenuItem";
+            this.top10OutstandingCustomerToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.top10OutstandingCustomerToolStripMenuItem.Text = "Top 10 Outstanding Customer";
+            // 
+            // outstandingOrderToolStripMenuItem
+            // 
+            this.outstandingOrderToolStripMenuItem.Name = "outstandingOrderToolStripMenuItem";
+            this.outstandingOrderToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.outstandingOrderToolStripMenuItem.Text = "Outstanding Order Report";
+            this.outstandingOrderToolStripMenuItem.Click += new System.EventHandler(this.outstandingOrderToolStripMenuItem_Click);
+            // 
             // SystemToolStripMenuItem
             // 
             this.SystemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -161,12 +190,14 @@
             this.UserToolStripMenuItem.Name = "UserToolStripMenuItem";
             this.UserToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.UserToolStripMenuItem.Text = "User Information";
+            this.UserToolStripMenuItem.Click += new System.EventHandler(this.UserToolStripMenuItem_Click);
             // 
             // exitQToolStripMenuItem
             // 
             this.exitQToolStripMenuItem.Name = "exitQToolStripMenuItem";
             this.exitQToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.exitQToolStripMenuItem.Text = "Exit(&Q)";
+            this.exitQToolStripMenuItem.Click += new System.EventHandler(this.exitQToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -240,35 +271,6 @@
             this.btn_Report.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.btn_Report.UseVisualStyleBackColor = true;
             this.btn_Report.Click += new System.EventHandler(this.btn_Report_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.orderAgingReportToolStripMenuItem,
-            this.top10OutstandingCustomerToolStripMenuItem,
-            this.outstandingOrderToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(119, 20);
-            this.toolStripMenuItem1.Text = "Report Manager(&R)";
-            // 
-            // orderAgingReportToolStripMenuItem
-            // 
-            this.orderAgingReportToolStripMenuItem.Name = "orderAgingReportToolStripMenuItem";
-            this.orderAgingReportToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
-            this.orderAgingReportToolStripMenuItem.Text = "Order Aging Report";
-            // 
-            // top10OutstandingCustomerToolStripMenuItem
-            // 
-            this.top10OutstandingCustomerToolStripMenuItem.Name = "top10OutstandingCustomerToolStripMenuItem";
-            this.top10OutstandingCustomerToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
-            this.top10OutstandingCustomerToolStripMenuItem.Text = "Top 10 Outstanding Customer";
-            // 
-            // outstandingOrderToolStripMenuItem
-            // 
-            this.outstandingOrderToolStripMenuItem.Name = "outstandingOrderToolStripMenuItem";
-            this.outstandingOrderToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
-            this.outstandingOrderToolStripMenuItem.Text = "Outstanding Order Report";
-            this.outstandingOrderToolStripMenuItem.Click += new System.EventHandler(this.outstandingOrderToolStripMenuItem_Click);
             // 
             // frmMain
             // 

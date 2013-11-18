@@ -53,7 +53,37 @@ namespace DataLogic.DataAccessLayer
             try
             {
                 OracleCommand commn = dataConnection.ConnectToDatabase();
-                commn.CommandText = "select * from product where prouctid =" + productId;
+                commn.CommandText = "select * from product where productid =" + productId;
+                OracleDataReader odr = commn.ExecuteReader();
+                while (odr.Read())
+                {
+                    aProduct.ProductId = odr.GetInt32(0);
+                    aProduct.Instruction = odr.GetString(1);
+                    aProduct.UnitPrice = odr.GetFloat(2);
+                    aProduct.UnitType = odr.GetString(3);
+                    aProduct.ProductName = odr.GetString(4);
+                }
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
+
+            return aProduct;
+        }
+
+        /// <summary>
+        /// get product by name
+        /// </summary>
+        /// <param name="productname"></param>
+        /// <returns></returns>
+        public Product getProductByName(string productname)
+        {
+            Product aProduct = new Product();
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase();
+                commn.CommandText = "select * from product where productname =" + "'"+productname+"'";
                 OracleDataReader odr = commn.ExecuteReader();
                 while (odr.Read())
                 {
@@ -160,5 +190,7 @@ namespace DataLogic.DataAccessLayer
             { }
             finally { dataConnection.CloseDatabase(); }
         }
+
+
     }
 }

@@ -47,7 +47,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.e_custName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.butPrint = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -270,17 +269,6 @@
             this.label6.Size = new System.Drawing.Size(82, 13);
             this.label6.TabIndex = 22;
             this.label6.Text = "Customer Name";
-            // 
-            // butPrint
-            // 
-            this.butPrint.Image = ((System.Drawing.Image)(resources.GetObject("butPrint.Image")));
-            this.butPrint.Location = new System.Drawing.Point(761, 560);
-            this.butPrint.Name = "butPrint";
-            this.butPrint.Size = new System.Drawing.Size(75, 25);
-            this.butPrint.TabIndex = 28;
-            this.butPrint.Text = "Print";
-            this.butPrint.UseVisualStyleBackColor = true;
-            this.butPrint.Click += new System.EventHandler(this.butPrint_Click);
             // 
             // label1
             // 
@@ -760,7 +748,6 @@
             this.ClientSize = new System.Drawing.Size(956, 587);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.butPrint);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
@@ -800,7 +787,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox e_custName;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button butPrint;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAdd;

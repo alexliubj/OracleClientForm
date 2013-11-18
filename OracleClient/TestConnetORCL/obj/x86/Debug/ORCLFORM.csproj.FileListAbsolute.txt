@@ -23,6 +23,8 @@ C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClien
 C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\TestConnetORCL\bin\Debug\DataLogic.pdb
 C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\TestConnetORCL\obj\x86\Debug\ORCLFORM.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\TestConnetORCL\obj\x86\Debug\TestConnetORCL.Properties.Resources.resources
+C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\TestConnetORCL\obj\x86\Debug\TestConnetORCL.Report.ProductForm.resources
+C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\TestConnetORCL\obj\x86\Debug\TestConnetORCL.Report.ReportForm.resources
 C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\TestConnetORCL\obj\x86\Debug\xtreme.frmCustomer.resources
 C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\TestConnetORCL\obj\x86\Debug\xtreme.frmCustomerQuery.resources
 C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\TestConnetORCL\obj\x86\Debug\xtreme.frmMain.resources

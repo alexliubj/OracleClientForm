@@ -98,9 +98,30 @@ namespace DataLogic.DataAccessLayer
         /// get order by order id
         /// </summary>
         /// <returns></returns>
-        public Order GetOrderById()
-        { 
-            return new Order();
+        public Order GetOrderById(int orderid)
+        {
+            Order aOrder = new Order();
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase();
+                commn.CommandText = "select orderid, orderdate,shipdate,status,discount,employeeid,customerid from orders where orderid =" + orderid;
+                OracleDataReader odr = commn.ExecuteReader();
+                while (odr.Read())
+                {
+                    aOrder.OrderId = odr.GetInt32(0);
+                    aOrder.OrderDate = odr.GetDateTime(1);
+                    aOrder.ShipDate = odr.GetDateTime(2);
+                    aOrder.Status = odr.GetInt32(3);
+                    aOrder.Discount = odr.GetInt32(4);
+                    aOrder.EmployeeId = odr.GetInt32(5);
+                    aOrder.customerId = odr.GetInt32(6);
+                }
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
+            return aOrder;
         }
         /// <summary>
         /// A display of all orders outstanding by groupings of less than 30 days old, 

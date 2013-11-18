@@ -88,5 +88,15 @@ namespace xtreme
         {
 
         }
+
+        private void exitQToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void UserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("CentennialSoft", "OK", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
     }
 }

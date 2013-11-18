@@ -59,8 +59,10 @@ namespace xtreme
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = null;
             currentStatus = FormStatus.adding;
+            extenstions.ClearControls(Controls);
+            dataGridView1.DataSource = listProducts;
+
         }
 
         /// <summary>
@@ -70,7 +72,12 @@ namespace xtreme
         /// <param name="e"></param>
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            
+            Product temProduct = new Product();
+            temProduct = listProducts[currentSelectedIndex];
+            ProductsLAO.RemoveProductById(temProduct.ProductId);
+            listProducts.RemoveAt(currentSelectedIndex);
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = listProducts;
         }
         /// <summary>
         /// save button onclick
@@ -79,13 +86,29 @@ namespace xtreme
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Product p = new Product();
-            p.Instruction = txt_descrip.Text;
-            p.ProductId = Int32.Parse(txt_id.Text);
-            p.ProductName = txt_Name.Text;
-            p.UnitPrice = float.Parse(txt_Price.Text);
-            p.UnitType = txt_Unit.Text.ToString();
-            ProductsLAO.UpdateProduct(p);
+            if (currentStatus == FormStatus.editing)
+            {
+                Product p = new Product();
+                p.Instruction = txt_descrip.Text;
+                p.ProductId = Int32.Parse(txt_id.Text);
+                p.ProductName = txt_Name.Text;
+                p.UnitPrice = float.Parse(txt_Price.Text);
+                p.UnitType = txt_Unit.Text.ToString();
+                ProductsLAO.UpdateProduct(p);
+            }
+            if (currentStatus == FormStatus.adding)
+            {
+                Product p = new Product();
+                p.Instruction = txt_descrip.Text;
+                p.ProductId = Int32.Parse(txt_id.Text);
+                p.ProductName = txt_Name.Text;
+                p.UnitPrice = float.Parse(txt_Price.Text);
+                p.UnitType = txt_Unit.Text.ToString();
+                ProductsLAO.AddNewProduct(p);
+            }
+            listProducts = ProductsLAO.GetAllProducts();
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = listProducts;
         }
 
         /// <summary>

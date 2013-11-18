@@ -30,7 +30,7 @@ namespace DataLogic.LogicLayer
         /// <returns></returns>
         public static Order GetOrderById(int orderId)
         {
-            return dao.GetOrderById();
+            return dao.GetOrderById(orderId);
         }
         /// <summary>
         /// x. A display of all outstanding orders for a particular client, to include client number, name, contact, 
