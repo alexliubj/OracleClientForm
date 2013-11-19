@@ -162,6 +162,7 @@
             this.orderAgingReportToolStripMenuItem.Name = "orderAgingReportToolStripMenuItem";
             this.orderAgingReportToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
             this.orderAgingReportToolStripMenuItem.Text = "Order Aging Report";
+            this.orderAgingReportToolStripMenuItem.Click += new System.EventHandler(this.orderAgingReportToolStripMenuItem_Click);
             // 
             // top10OutstandingCustomerToolStripMenuItem
             // 

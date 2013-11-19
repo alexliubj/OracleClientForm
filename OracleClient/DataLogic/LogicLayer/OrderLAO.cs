@@ -65,6 +65,16 @@ namespace DataLogic.LogicLayer
         {
             return dao.GetOrderByDate(daysForm, daysTo);
         }
+
+        /// <summary>
+        /// get aging report;
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public List<Order> GetAgingReport(int status)
+        {
+            return dao.GetAgingReport(status);
+        }
         /// <summary>
         /// get order lines by orderid 
         /// </summary>

@@ -123,19 +123,7 @@ namespace DataLogic.DataAccessLayer
             finally { dataConnection.CloseDatabase(); }
             return aOrder;
         }
-        /// <summary>
-        /// A display of all orders outstanding by groupings of less than 30 days old, 
-        /// 31 to 60 days old, 61 to 90 days 
-        ///old, and 91 plus days old, 
-        /// </summary>
-        /// <param name="daysForm"></param>
-        /// <param name="daysTo"></param>
-        /// <returns></returns>
-        public List<Order> GetOrderByDate(int daysForm, int daysTo)
-        {
-            List<Order> retOrder = new List<Order>();
-            return retOrder;
-        }
+       
 
         /// <summary>
         /// A display of all outstanding orders for a particular client, to include client number, name, contact, 
@@ -257,6 +245,31 @@ namespace DataLogic.DataAccessLayer
         {
             List<Customer> retCustomer = new List<Customer>();
             return retCustomer;
+        }
+
+        /// <summary>
+        /// get aging order report
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public List<Order> GetAgingReport(int status)
+        {
+            List<Order> listOrder = new List<Order>();
+            return listOrder;
+        }
+
+        /// <summary>
+        /// A display of all orders outstanding by groupings of less than 30 days old, 
+        /// 31 to 60 days old, 61 to 90 days 
+        ///old, and 91 plus days old, 
+        /// </summary>
+        /// <param name="daysForm"></param>
+        /// <param name="daysTo"></param>
+        /// <returns></returns>
+        public List<Order> GetOrderByDate(int daysForm, int daysTo)
+        {
+            List<Order> retOrder = new List<Order>();
+            return retOrder;
         }
     }
 }
