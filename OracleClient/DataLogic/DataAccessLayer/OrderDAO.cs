@@ -247,29 +247,100 @@ namespace DataLogic.DataAccessLayer
             return retCustomer;
         }
 
+        
+
         /// <summary>
         /// get aging order report
         /// </summary>
         /// <param name="status"></param>
         /// <returns></returns>
-        public List<Order> GetAgingReport(int status)
+        public List<Reports> GetOutStandingReport(int status)
         {
-            List<Order> listOrder = new List<Order>();
-            return listOrder;
+            List<Reports> listReport = new List<Reports>();
+
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase();
+                commn.CommandText = "select o.orderid, o.orderdate, o.customerid,c.custfname, c.custlname, sum( ol.unitprice * ol.quantity) as amount "
+                                    + " from orders o"
+                                    + " inner join orderline ol"
+                                    + " on o.orderid = ol.orderid"
+                                    + " inner join customers c"
+                                    + " on o.customerid = c.customerid"
+                                    + " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname, o.status"
+                                    + " having o.status=1"
+                                    + " order by amount desc";
+                OracleDataReader odr = commn.ExecuteReader();
+                while (odr.Read())
+                {
+                    Reports aReport = new Reports();
+                    aReport.orderid = odr.GetInt32(0);
+                    aReport.orderDate = odr.GetDateTime(1);
+                    aReport.customerId = odr.GetInt32(2);
+                    aReport.custFirstName = odr.GetString(3);
+                    aReport.custLastName = odr.GetString(4);
+                    aReport.amount = odr.GetFloat(5);
+                    listReport.Add(aReport);
+                }
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
+
+            return listReport;
         }
 
         /// <summary>
         /// A display of all orders outstanding by groupings of less than 30 days old, 
         /// 31 to 60 days old, 61 to 90 days 
-        ///old, and 91 plus days old, 
+        /// old, and 91 plus days old, 
         /// </summary>
-        /// <param name="daysForm"></param>
-        /// <param name="daysTo"></param>
+        /// <param name="daysType">(type=1 --- less than 30) (3 ---- greate than 90) </param>
         /// <returns></returns>
-        public List<Order> GetOrderByDate(int daysForm, int daysTo)
+        public List<Reports> GetOrderByDate(int daysType)
         {
-            List<Order> retOrder = new List<Order>();
-            return retOrder;
+            List<Reports> listReport = new List<Reports>();
+
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase();
+                commn.CommandText = "select o.orderid, o.orderdate, o.customerid,c.custfname, c.custlname, sum(ol.unitprice * ol.quantity) as amount "
+                                    + " from orders o"
+                                    + " inner join orderline ol"
+                                    + " on o.orderid = ol.orderid"
+                                    + " inner join customers c"
+                                    + " on o.customerid = c.customerid"
+                                    + " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname, o.status"
+                                    + " having o.status=1";
+                if (daysType == 1)
+                { commn.CommandText += " and sysdate - o.orderdate <30"; }
+                else if (daysType == 2)
+                { commn.CommandText += " and sysdate - o.orderdate >30 and sysdate - o.orderdate < 60"; }
+                else if (daysType == 3)
+                { commn.CommandText += " and sysdate - o.orderdate >90"; }
+                else //others
+                { }
+                commn.CommandText += " order by amount desc";
+                OracleDataReader odr = commn.ExecuteReader();
+                while (odr.Read())
+                {
+                    Reports aReport = new Reports();
+                    aReport.orderid = odr.GetInt32(0);
+                    aReport.orderDate = odr.GetDateTime(1);
+                    aReport.customerId = odr.GetInt32(2);
+                    aReport.custFirstName = odr.GetString(3);
+                    aReport.custLastName = odr.GetString(4);
+                    aReport.amount = odr.GetFloat(5);
+                    listReport.Add(aReport);
+                }
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
+
+            return listReport;
         }
     }
 }

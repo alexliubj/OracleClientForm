@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestConnetORCL.Report;
 
 namespace xtreme
 {
@@ -84,11 +85,6 @@ namespace xtreme
             frm.ShowDialog();
         }
 
-        private void outstandingOrderToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void exitQToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -101,7 +97,20 @@ namespace xtreme
 
         private void orderAgingReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           AllOrders al = new AllOrders(1);
+           al.ShowDialog();
+        }
 
+        private void outstandingOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AllOrders al = new AllOrders(2);
+            al.ShowDialog();
+        }
+
+        private void top10OutstandingCustomerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AllOrders al = new AllOrders(3);
+            al.ShowDialog();
         }
     }
 }

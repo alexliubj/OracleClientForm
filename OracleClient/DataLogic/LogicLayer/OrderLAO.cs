@@ -61,9 +61,9 @@ namespace DataLogic.LogicLayer
         /// <param name="daysForm"></param>
         /// <param name="daysTo"></param>
         /// <returns></returns>
-        public static List<Order> GetOrderByDate(int daysForm, int daysTo)
+        public static List<Reports> GetOrderByDate(int daysType)
         {
-            return dao.GetOrderByDate(daysForm, daysTo);
+            return dao.GetOrderByDate(daysType);
         }
 
         /// <summary>
@@ -71,9 +71,9 @@ namespace DataLogic.LogicLayer
         /// </summary>
         /// <param name="status"></param>
         /// <returns></returns>
-        public List<Order> GetAgingReport(int status)
+        public static List<Reports> GetOutStandingReport(int status)
         {
-            return dao.GetAgingReport(status);
+            return dao.GetOutStandingReport(status);
         }
         /// <summary>
         /// get order lines by orderid 

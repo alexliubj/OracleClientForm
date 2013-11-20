@@ -169,6 +169,7 @@
             this.top10OutstandingCustomerToolStripMenuItem.Name = "top10OutstandingCustomerToolStripMenuItem";
             this.top10OutstandingCustomerToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
             this.top10OutstandingCustomerToolStripMenuItem.Text = "Top 10 Outstanding Customer";
+            this.top10OutstandingCustomerToolStripMenuItem.Click += new System.EventHandler(this.top10OutstandingCustomerToolStripMenuItem_Click);
             // 
             // outstandingOrderToolStripMenuItem
             // 

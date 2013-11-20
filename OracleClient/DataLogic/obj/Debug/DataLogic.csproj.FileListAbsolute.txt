@@ -1,4 +1,0 @@
-C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\DataLogic\bin\Debug\DataLogic.dll
-C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\DataLogic\bin\Debug\DataLogic.pdb
-C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\DataLogic\obj\Debug\DataLogic.dll
-C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\DataLogic\obj\Debug\DataLogic.pdb
