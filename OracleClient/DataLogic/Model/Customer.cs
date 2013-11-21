@@ -15,8 +15,8 @@ namespace DataLogic.Model
         public string Street { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        public int Phone { get; set; }
-        public int Fax { get; set; }
+        public string Phone { get; set; }
+        public string Fax { get; set; }
         public string Email { get; set; }
         public string MutiAddress { get; set; }
         public string PostCode { get; set; }

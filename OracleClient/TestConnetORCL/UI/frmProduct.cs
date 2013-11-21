@@ -95,6 +95,7 @@ namespace xtreme
                 p.UnitPrice = float.Parse(txt_Price.Text);
                 p.UnitType = txt_Unit.Text.ToString();
                 ProductsLAO.UpdateProduct(p);
+                MessageBox.Show("Updated", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); 
             }
             if (currentStatus == FormStatus.adding)
             {
@@ -105,6 +106,8 @@ namespace xtreme
                 p.UnitPrice = float.Parse(txt_Price.Text);
                 p.UnitType = txt_Unit.Text.ToString();
                 ProductsLAO.AddNewProduct(p);
+                currentStatus = FormStatus.nonstatus;
+                MessageBox.Show("Saved", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); 
             }
             listProducts = ProductsLAO.GetAllProducts();
             dataGridView1.DataSource = null;

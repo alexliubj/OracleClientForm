@@ -35,8 +35,8 @@ namespace DataLogic.DataAccessLayer
                     aCustomer.State = odr.GetString(5);
                     aCustomer.Street = odr.GetString(6);
                     aCustomer.City = odr.GetString(7);
-                    aCustomer.Phone = odr.GetInt32(8);
-                    aCustomer.Fax = odr.GetInt32(9);
+                    aCustomer.Phone = odr.GetString(8);
+                    aCustomer.Fax = odr.GetString(9);
                     aCustomer.Email = odr.GetString(10);
                     aCustomer.MutiAddress = odr.GetString(11);
                     aCustomer.PostCode = odr.GetString(12) == null ? "" : odr.GetString(12);
@@ -93,8 +93,8 @@ namespace DataLogic.DataAccessLayer
                     aCustomer.State = odr.GetString(5);
                     aCustomer.Street = odr.GetString(6);
                     aCustomer.City = odr.GetString(7);
-                    aCustomer.Phone = odr.GetInt32(8);
-                    aCustomer.Fax = odr.GetInt32(9);
+                    aCustomer.Phone = odr.GetString(8);
+                    aCustomer.Fax = odr.GetString(9);
                     aCustomer.Email = odr.GetString(10);
                     aCustomer.MutiAddress = odr.GetString(11);
                     aCustomer.PostCode = odr.GetString(12) == null ? "" : odr.GetString(12);
@@ -145,8 +145,8 @@ namespace DataLogic.DataAccessLayer
                     aCustomer.State = odr.GetString(5);
                     aCustomer.Street = odr.GetString(6);
                     aCustomer.City = odr.GetString(7);
-                    aCustomer.Phone = odr.GetInt32(8);
-                    aCustomer.Fax = odr.GetInt32(9);
+                    aCustomer.Phone = odr.GetString(8);
+                    aCustomer.Fax = odr.GetString(9);
                     aCustomer.Email = odr.GetString(10);
                     aCustomer.MutiAddress = odr.GetString(11);
                     aCustomer.PostCode = odr.GetString(12) == null ? "" : odr.GetString(12);

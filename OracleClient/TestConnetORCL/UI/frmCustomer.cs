@@ -85,7 +85,7 @@ namespace xtreme
             aCustomer.CustomerId = Int32.Parse(txt_id.Text);
             aCustomer.Street = txt_Add.Text;
             aCustomer.State = txt_State.Text;
-            aCustomer.Phone = Int32.Parse(txt_Phone.Text);
+            aCustomer.Phone = txt_Phone.Text;
             aCustomer.City = txt_City.Text;
             aCustomer.CustLastName = txt_ln.Text;
             aCustomer.CustFirstName = txt_fn.Text;
@@ -198,8 +198,30 @@ namespace xtreme
             {
                 case currentStatusEnum.addingStatus:
                     {
-                        Customer insertCustomer = GetAllCustomerFromComponents();
-                        CustomerLAO.addNewCustomer(insertCustomer);
+                        if (!chk_ship.Checked)
+                        {
+                            if (m_address.Text != string.Empty &&
+                                m_city.Text != string.Empty &&
+                                m_first.Text != string.Empty &&
+                                m_last.Text != string.Empty &&
+                                m_Phone.Text != string.Empty &&
+                                m_postcode.Text != string.Empty &&
+                                m_state.Text != string.Empty)
+                            {
+                                Customer insertCustomer = GetAllCustomerFromComponents();
+                                CustomerLAO.addNewCustomer(insertCustomer);
+                            }
+                            else
+                            {
+
+                                MessageBox.Show("Address Error", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                        }
+                        else
+                        {
+                            Customer insertCustomer = GetAllCustomerFromComponents();
+                            CustomerLAO.addNewCustomer(insertCustomer);
+                        }
                     }
                     break;
                 case currentStatusEnum.editingStatus:

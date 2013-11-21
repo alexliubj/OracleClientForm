@@ -29,7 +29,12 @@ namespace xtreme
             dataGridView1.DataSource = null;
             if (textBox_code.Text != string.Empty)
             {
-                cust = CustomerLAO.getCustoemerById(Int32.Parse(textBox_code.Text));
+                int restult =0;
+                if (Int32.TryParse(textBox_code.Text,out restult))
+                {
+                    cust = CustomerLAO.getCustoemerById(Int32.Parse(textBox_code.Text));
+                }
+                if(cust != null)
                 customer.Add(cust);
             }
             else
