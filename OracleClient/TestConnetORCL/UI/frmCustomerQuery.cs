@@ -26,6 +26,7 @@ namespace xtreme
 
         private void btnQuery_Click(object sender, EventArgs e)
         {
+            customer.Clear();
             dataGridView1.DataSource = null;
             if (textBox_code.Text != string.Empty)
             {

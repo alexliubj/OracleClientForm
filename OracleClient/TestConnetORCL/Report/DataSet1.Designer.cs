@@ -410,6 +410,8 @@ namespace TestConnetORCL.Report {
             
             private global::System.Data.DataColumn columnPostCode;
             
+            private global::System.Data.DataColumn columnCUSTNAME;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public CustomerDataTable() {
@@ -549,6 +551,14 @@ namespace TestConnetORCL.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CUSTNAMEColumn {
+                get {
+                    return this.columnCUSTNAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -584,7 +594,7 @@ namespace TestConnetORCL.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CustomerRow AddCustomerRow(string CustomerId, string DiscountRate, string CustLastName, string CustFirstName, string RegisterDate, string Street, string City, string State, string Phone, string Fax, string Email, string MutiAddress, string PostCode) {
+            public CustomerRow AddCustomerRow(string CustomerId, string DiscountRate, string CustLastName, string CustFirstName, string RegisterDate, string Street, string City, string State, string Phone, string Fax, string Email, string MutiAddress, string PostCode, string CUSTNAME) {
                 CustomerRow rowCustomerRow = ((CustomerRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CustomerId,
@@ -599,7 +609,8 @@ namespace TestConnetORCL.Report {
                         Fax,
                         Email,
                         MutiAddress,
-                        PostCode};
+                        PostCode,
+                        CUSTNAME};
                 rowCustomerRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCustomerRow);
                 return rowCustomerRow;
@@ -635,6 +646,7 @@ namespace TestConnetORCL.Report {
                 this.columnEmail = base.Columns["Email"];
                 this.columnMutiAddress = base.Columns["MutiAddress"];
                 this.columnPostCode = base.Columns["PostCode"];
+                this.columnCUSTNAME = base.Columns["CUSTNAME"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -666,6 +678,8 @@ namespace TestConnetORCL.Report {
                 base.Columns.Add(this.columnMutiAddress);
                 this.columnPostCode = new global::System.Data.DataColumn("PostCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPostCode);
+                this.columnCUSTNAME = new global::System.Data.DataColumn("CUSTNAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCUSTNAME);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1967,6 +1981,22 @@ namespace TestConnetORCL.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CUSTNAME {
+                get {
+                    try {
+                        return ((string)(this[this.tableCustomer.CUSTNAMEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CUSTNAME\' in table \'Customer\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCustomer.CUSTNAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCustomerIdNull() {
                 return this.IsNull(this.tableCustomer.CustomerIdColumn);
             }
@@ -2119,6 +2149,18 @@ namespace TestConnetORCL.Report {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPostCodeNull() {
                 this[this.tableCustomer.PostCodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCUSTNAMENull() {
+                return this.IsNull(this.tableCustomer.CUSTNAMEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCUSTNAMENull() {
+                this[this.tableCustomer.CUSTNAMEColumn] = global::System.Convert.DBNull;
             }
         }
         

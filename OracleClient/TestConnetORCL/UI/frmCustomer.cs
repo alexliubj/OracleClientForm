@@ -57,7 +57,7 @@ namespace xtreme
             txt_Name.Text = customer.CustFirstName + " " + customer.CustLastName;
             txt_post.Text = customer.PostCode;
             cb_Rate.Text = customer.DiscountRate.ToString();
-
+            txt_Name.Text = customer.CUSTNAME.ToString();
             if (String.Compare(customer.MutiAddress, "Y") == 0)
             {
                 chk_ship.Checked = true;
@@ -91,6 +91,7 @@ namespace xtreme
             aCustomer.CustFirstName = txt_fn.Text;
             aCustomer.PostCode = txt_post.Text;
             aCustomer.DiscountRate = float.Parse(cb_Rate.Text);
+            aCustomer.CUSTNAME = txt_Name.Text;
             if (!chk_ship.Checked)
             {
                 aCustomer.MutiAddress = "N";

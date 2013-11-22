@@ -20,7 +20,7 @@ namespace DataLogic.DataAccessLayer
             {
                 OracleCommand commn = dataConnection.ConnectToDatabase();
                 commn.CommandText = "select cus.customerid, discountrate, registerdate, custfname, custlname, state, street, city,phone, fax, email, multiaddress,postcode," +
-                            "s.shippingfname,s.shippingstreet, s.shippingstate,s.shippingcity,s.shippingphone,s.SHIPPINGLNAME,s.shippingpost " +
+                            "s.shippingfname,s.shippingstreet, s.shippingstate,s.shippingcity,s.shippingphone,s.SHIPPINGLNAME,s.shippingpost,CUSTNAME " +
                             "from customers cus left join shippinginfo s " +
                             "on cus.customerid = s.customerid";
                 OracleDataReader odr = commn.ExecuteReader();
@@ -40,7 +40,7 @@ namespace DataLogic.DataAccessLayer
                     aCustomer.Email = odr.GetString(10);
                     aCustomer.MutiAddress = odr.GetString(11);
                     aCustomer.PostCode = odr.GetString(12) == null ? "" : odr.GetString(12);
-
+                    aCustomer.CUSTNAME = odr.GetString(20);
                     if(string.Compare(aCustomer.MutiAddress, "N") ==0)
                     {
                         ShippingInfo shipinfo = new ShippingInfo();
@@ -78,7 +78,7 @@ namespace DataLogic.DataAccessLayer
             {
                 OracleCommand commn = dataConnection.ConnectToDatabase();
                 commn.CommandText = "select cus.customerid, discountrate, registerdate, custfname, custlname, state, street, city,phone, fax, email, multiaddress,postcode," +
-                            "s.shippingfname,s.shippingstreet, s.shippingstate,s.shippingcity,s.shippingphone,s.SHIPPINGLNAME,s.shippingpost " +
+                            "s.shippingfname,s.shippingstreet, s.shippingstate,s.shippingcity,s.shippingphone,s.SHIPPINGLNAME,s.shippingpost,CUSTNAME " +
                             "from customers cus left join shippinginfo s " +
                             "on cus.customerid = s.customerid " +
                             "where cus.customerid =" + customerId;
@@ -98,7 +98,7 @@ namespace DataLogic.DataAccessLayer
                     aCustomer.Email = odr.GetString(10);
                     aCustomer.MutiAddress = odr.GetString(11);
                     aCustomer.PostCode = odr.GetString(12) == null ? "" : odr.GetString(12);
-
+                    aCustomer.CUSTNAME = odr.GetString(20);
                     if (string.Compare(aCustomer.MutiAddress, "N") == 0)
                     {
                         ShippingInfo shipinfo = new ShippingInfo();
@@ -129,7 +129,7 @@ namespace DataLogic.DataAccessLayer
             {
                 OracleCommand commn = dataConnection.ConnectToDatabase();
                 commn.CommandText = "select cus.customerid, discountrate, registerdate, custfname, custlname, state, street, city,phone, fax, email, multiaddress,postcode," +
-                            "s.shippingfname,s.shippingstreet, s.shippingstate,s.shippingcity,s.shippingphone,s.SHIPPINGLNAME,s.shippingpost " +
+                            "s.shippingfname,s.shippingstreet, s.shippingstate,s.shippingcity,s.shippingphone,s.SHIPPINGLNAME,s.shippingpost,CUSTNAME " +
                             "from customers cus left join shippinginfo s " +
                             "on cus.customerid = s.customerid " +
                             "where cus.custfname =" + "'"+customerName+"'";
@@ -150,7 +150,7 @@ namespace DataLogic.DataAccessLayer
                     aCustomer.Email = odr.GetString(10);
                     aCustomer.MutiAddress = odr.GetString(11);
                     aCustomer.PostCode = odr.GetString(12) == null ? "" : odr.GetString(12);
-
+                    aCustomer.CUSTNAME = odr.GetString(20);
                     if (string.Compare(aCustomer.MutiAddress, "N") == 0)
                     {
                         ShippingInfo shipinfo = new ShippingInfo();
@@ -184,7 +184,7 @@ namespace DataLogic.DataAccessLayer
         {
             try
             {
-                OracleCommand commn = dataConnection.ConnectToDatabase("insert into customers values (:customerid,:discountrate,:registerdate,:custfname,:custlname,:street,:city,:state,:phone,:fax,:email,:multiaddress,:postcode)");
+                OracleCommand commn = dataConnection.ConnectToDatabase("insert into customers values (:customerid,:discountrate,:registerdate,:custfname,:custlname,:street,:city,:state,:phone,:fax,:email,:multiaddress,:postcode,:CUSTNAME)");
                 commn.Parameters.Add(new OracleParameter("customerid", cust.CustomerId));
                 commn.Parameters.Add(new OracleParameter("discountrate", cust.DiscountRate));
                 commn.Parameters.Add(new OracleParameter("registerdate", DateTime.Now));
@@ -198,6 +198,7 @@ namespace DataLogic.DataAccessLayer
                 commn.Parameters.Add(new OracleParameter("email", "test@test.com"));
                 commn.Parameters.Add(new OracleParameter("multiaddress", cust.MutiAddress));
                 commn.Parameters.Add(new OracleParameter("postcode", cust.PostCode));
+                commn.Parameters.Add(new OracleParameter("CUSTNAME", cust.CUSTNAME));
                 string sss = commn.ToString();
                 int result = commn.ExecuteNonQuery();
 
@@ -246,7 +247,7 @@ namespace DataLogic.DataAccessLayer
             try
             {
                 OracleCommand commn = dataConnection.ConnectToDatabase("update customers set discountrate=:discountrate,registerdate=:registerdate,"+
-                "custfname=:custfname,custlname=:custlname,street=:street,city=:city,state=:state,phone=:phone,fax=:fax,email=:email,multiaddress=:multiaddress,postcode=:postcode where customerid=:customerid");
+                "custfname=:custfname,custlname=:custlname,street=:street,city=:city,state=:state,phone=:phone,fax=:fax,email=:email,multiaddress=:multiaddress,postcode=:postcode CUSTNAME=:CUSTNAME where customerid=:customerid");
                 commn.Parameters.Add(new OracleParameter("customerid", cust.CustomerId));
                 commn.Parameters.Add(new OracleParameter("discountrate", cust.DiscountRate));
                 commn.Parameters.Add(new OracleParameter("registerdate", cust.RegisterDate));
@@ -260,6 +261,7 @@ namespace DataLogic.DataAccessLayer
                 commn.Parameters.Add(new OracleParameter("email", "test@test.com"));
                 commn.Parameters.Add(new OracleParameter("multiaddress", cust.MutiAddress));
                 commn.Parameters.Add(new OracleParameter("postcode", cust.PostCode));
+                commn.Parameters.Add(new OracleParameter("CUSTNAME", cust.CUSTNAME));
                 string sss = commn.ToString();
                 int result = commn.ExecuteNonQuery();
 

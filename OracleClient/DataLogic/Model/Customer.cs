@@ -20,6 +20,7 @@ namespace DataLogic.Model
         public string Email { get; set; }
         public string MutiAddress { get; set; }
         public string PostCode { get; set; }
+        public string CUSTNAME { get; set; }
         public ShippingInfo ShipInfo { get; set; }
     }
 }
