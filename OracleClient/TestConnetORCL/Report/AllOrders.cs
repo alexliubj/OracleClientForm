@@ -47,7 +47,7 @@ namespace TestConnetORCL.Report
                 case 3: //top customers
                     break;
                 default:
-                    return null;
+                    
                     break;
             }
 

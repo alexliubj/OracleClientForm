@@ -291,6 +291,26 @@ namespace DataLogic.DataAccessLayer
             return listReport;
         }
 
+        public int getOrderNextValue()
+        {
+            int ret = 0;
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase();
+                commn.CommandText = "select ordid_seq.nextVal from dual";
+                OracleDataReader odr = commn.ExecuteReader();
+                while (odr.Read())
+                {
+                    ret = odr.GetInt32(0);
+                }
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
+            return ret;
+        }
+
         /// <summary>
         /// A display of all orders outstanding by groupings of less than 30 days old, 
         /// 31 to 60 days old, 61 to 90 days 

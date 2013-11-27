@@ -103,6 +103,32 @@ namespace DataLogic.DataAccessLayer
         }
 
         /// <summary>
+        /// produt sequence value
+        /// </summary>
+        /// <returns></returns>
+        public int getProductCurrentVal()
+        {
+            int ret = 0;
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase();
+               // commn.CommandText = "select prodid_seq.nextval from dual";
+               // commn.ExecuteReader();
+                commn.CommandText = "select prodid_seq.nextval from dual";
+                OracleDataReader odr = commn.ExecuteReader();
+                while (odr.Read())
+                {
+                    ret = odr.GetInt32(0);
+                }
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
+            return ret;
+        }
+
+        /// <summary>
         /// insert one product by product object
         /// </summary>
         /// <param name="prod"></param>
@@ -110,7 +136,7 @@ namespace DataLogic.DataAccessLayer
         {
             try
             {
-                OracleCommand commn = dataConnection.ConnectToDatabase("insert into product values (:productid,:INSTRUCTION,:UNITPRICE,:UNITTYPE,:PRODUCTNAME)");
+                OracleCommand commn = dataConnection.ConnectToDatabase("insert into product values (:PRODUCTID,:INSTRUCTION,:UNITPRICE,:UNITTYPE,:PRODUCTNAME)");
                 commn.Parameters.Add(new OracleParameter("PRODUCTID", prod.ProductId));
                 commn.Parameters.Add(new OracleParameter("INSTRUCTION", prod.Instruction));
                 commn.Parameters.Add(new OracleParameter("UNITPRICE", prod.UnitPrice));

@@ -153,6 +153,7 @@ namespace xtreme
             btn_delete.Enabled = false;
             e_custName.Enabled = false;
             e_custName.ReadOnly = true;
+            o_number.Enabled = false;
             listProduct = ProductsLAO.GetAllProducts();
         }
         /// <summary>
@@ -176,6 +177,8 @@ namespace xtreme
             e_custName.Enabled = true;
             e_custName.ReadOnly = false;
             extenstions.ClearControls(Controls);
+            o_number.Enabled = false;
+            o_number.Text = OrderLAO.getOrderNextValue().ToString();
             if (listProduct.Count > 0)
             {
                 this.comb_prod.Items.Clear();
@@ -191,9 +194,6 @@ namespace xtreme
             }
 
             setAddressEnable(true);
-
-          
-            
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -211,29 +211,37 @@ namespace xtreme
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (currentStatus == FormStatus.adding)
+            if (prod_qnt.Text == string.Empty)
             {
-                currentStatus = FormStatus.nonstatus;
-                cb_cusId.Enabled = false;
-                cb_cusId.Visible = false;
-                btn_add.Enabled = false;
-                btn_delete.Enabled = false;
-                e_custName.Enabled = false;
-                e_custName.ReadOnly = true;
-                OrderLAO.CreateNewOrder(GenerateOrder(), GenerateOrderLine());
-                e_custName.Text = string.Empty;
-                e_cust.Text = string.Empty;
-                cb_cusId.Text = string.Empty;
-                setAddressEnable(false);
+                MessageBox.Show("Empty quantity", "OK", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (currentStatus == FormStatus.adding)
+                {
+                    currentStatus = FormStatus.nonstatus;
+                    cb_cusId.Enabled = false;
+                    cb_cusId.Visible = false;
+                    btn_add.Enabled = false;
+                    btn_delete.Enabled = false;
+                    e_custName.Enabled = false;
+                    e_custName.ReadOnly = true;
+                    o_number.Enabled = false;
+                    OrderLAO.CreateNewOrder(GenerateOrder(), GenerateOrderLine());
+                    e_custName.Text = string.Empty;
+                    e_cust.Text = string.Empty;
+                    cb_cusId.Text = string.Empty;
+                    setAddressEnable(false);
+                    listOrder = OrderLAO.GetAllOrders();
+                }
+                if (currentStatus == FormStatus.editing)
+                {
+                    OrderLAO.UpdateOrderStatus(o_status.SelectedIndex, Int32.Parse(o_number.Text));
+                    listOrder = OrderLAO.GetAllOrders();
+                }
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = listOrder;
                 listcostomer.Clear();
-            }
-            if (currentStatus == FormStatus.editing)
-            {
-                OrderLAO.UpdateOrderStatus(o_status.SelectedIndex, Int32.Parse(o_number.Text));
-                listOrder = OrderLAO.GetAllOrders();
-                
             }
         }
 
@@ -384,29 +392,37 @@ namespace xtreme
         /// <param name="e"></param>
         private void btn_add_Click(object sender, EventArgs e)
         {
-            if (Int32.Parse(prod_qnt.Text)>0)
-            {
-                bool inList = false;
-                foreach (ShowProdut sp in showProdut)
-                {
-                    if (listProduct[selectIndexOfProduct].ProductId == sp.ProductId)
-                        inList = true;
-                }
 
-                if (!inList)
-                {
-                    showProdut.Add(new ShowProdut()
-                    {
-                        Name = listProduct[selectIndexOfProduct].ProductName,
-                        ProductId = listProduct[selectIndexOfProduct].ProductId,
-                        Quantiy = Int32.Parse(prod_qnt.Text),
-                        UnitPrice = listProduct[selectIndexOfProduct].UnitPrice
-                    });
-                }
+            if (prod_qnt.Text == string.Empty)
+            {
+                MessageBox.Show("Empty quantity", "OK", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = showProdut;
-            UpdateBottomInformation();
+            else
+            {
+                if (Int32.Parse(prod_qnt.Text) > 0)
+                {
+                    bool inList = false;
+                    foreach (ShowProdut sp in showProdut)
+                    {
+                        if (listProduct[selectIndexOfProduct].ProductId == sp.ProductId)
+                            inList = true;
+                    }
+
+                    if (!inList)
+                    {
+                        showProdut.Add(new ShowProdut()
+                        {
+                            Name = listProduct[selectIndexOfProduct].ProductName,
+                            ProductId = listProduct[selectIndexOfProduct].ProductId,
+                            Quantiy = Int32.Parse(prod_qnt.Text),
+                            UnitPrice = listProduct[selectIndexOfProduct].UnitPrice
+                        });
+                    }
+                }
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = showProdut;
+                UpdateBottomInformation();
+            }
         }
 
         /// <summary>

@@ -66,6 +66,10 @@ namespace DataLogic.LogicLayer
             return dao.GetOrderByDate(daysType);
         }
 
+        public static int getOrderNextValue()
+        {
+            return dao.getOrderNextValue();
+        }
         /// <summary>
         /// get aging report;
         /// </summary>

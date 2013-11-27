@@ -20,6 +20,11 @@ namespace DataLogic.LogicLayer
         {
             dal.AddNewCustomer(customer);
         }
+
+        public static int getCustomerCurrentVal() 
+        {
+           return dal.getCustomerCurrentVal();
+        }
         /// <summary>
         /// ii. Display and modify all data for a customer, 
         /// </summary>

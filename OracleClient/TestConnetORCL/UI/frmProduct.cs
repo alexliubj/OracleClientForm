@@ -18,6 +18,7 @@ namespace xtreme
         private List<Product> listProducts = new List<Product>();
         private FormStatus currentStatus;
         private int currentSelectedIndex = 0;
+        private int nextProductId = 0;
         private enum FormStatus
         {
             nonstatus = 0,
@@ -30,6 +31,9 @@ namespace xtreme
         {
             InitializeComponent();
             InitializeAllData();
+            SetComponentsStatus(false);
+            txt_id.Enabled = false;
+            
         }
 
         /// <summary>
@@ -52,6 +56,15 @@ namespace xtreme
         private void InsertNewProduct(Product p)
         { }
 
+        private void SetComponentsStatus(bool status)
+        {
+            txt_descrip.Enabled = status;
+           // txt_id.Enabled = status;
+            txt_Name.Enabled = status;
+            txt_Price.Enabled = status;
+            txt_Unit.Enabled = status;
+        }
+
         /// <summary>
         /// add button
         /// </summary>
@@ -59,10 +72,12 @@ namespace xtreme
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            SetComponentsStatus(true);
             currentStatus = FormStatus.adding;
             extenstions.ClearControls(Controls);
             dataGridView1.DataSource = listProducts;
-
+            nextProductId = ProductsLAO.getProductCurrentVal();
+            txt_id.Text = nextProductId.ToString();
         }
 
         /// <summary>

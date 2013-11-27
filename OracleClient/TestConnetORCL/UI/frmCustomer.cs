@@ -30,6 +30,7 @@ namespace xtreme
             InitializeComponent();
             InitCustomerList();
             InitAllComponetsStatus(false);
+            txt_id.Enabled = false;
         }
 
         private void SetCheckboxGroup(bool status)
@@ -179,6 +180,7 @@ namespace xtreme
            // int selectIndex = Int32.Parse( this.dataGridView1.SelectedCells[0].Value.ToString());
             datagridSlect = selectIndex;
             InitAllComponetsStatus(true);
+            txt_id.Enabled = false;
             Customer aCustomer = new Customer();
             aCustomer = listCustomer[selectIndex];
             SetAllComponetsValues(aCustomer);
@@ -189,7 +191,10 @@ namespace xtreme
         {
             currentStatus = currentStatusEnum.addingStatus;
             InitAllComponetsStatus(true);
+            txt_id.Enabled = false;
             CleanAllTheComponest();
+            txt_id.Text = CustomerLAO.getCustomerCurrentVal().ToString();
+            
            
         }
 

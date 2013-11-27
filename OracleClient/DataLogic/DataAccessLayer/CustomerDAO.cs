@@ -132,7 +132,7 @@ namespace DataLogic.DataAccessLayer
                             "s.shippingfname,s.shippingstreet, s.shippingstate,s.shippingcity,s.shippingphone,s.SHIPPINGLNAME,s.shippingpost,CUSTNAME " +
                             "from customers cus left join shippinginfo s " +
                             "on cus.customerid = s.customerid " +
-                            "where cus.custfname =" + "'"+customerName+"'";
+                            "where cus.custfname || ' ' || cus.custlname =" + "'" + customerName + "'";
                 OracleDataReader odr = commn.ExecuteReader();
                 while (odr.Read())
                 {
@@ -176,6 +176,27 @@ namespace DataLogic.DataAccessLayer
             finally { dataConnection.CloseDatabase(); }
             return retCustomer;
         }
+
+        public int getCustomerCurrentVal()
+        {
+            int ret = 0;
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase();
+                commn.CommandText = "select custid_seq.nextval from dual";
+                OracleDataReader odr = commn.ExecuteReader();
+                while (odr.Read())
+                {
+                    ret = odr.GetInt32(0);
+                }
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
+            return ret;
+        }
+
         /// <summary>
         /// add new customer by customer object
         /// </summary>

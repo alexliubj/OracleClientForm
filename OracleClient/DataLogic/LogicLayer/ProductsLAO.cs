@@ -17,7 +17,15 @@ namespace DataLogic.LogicLayer
         {
             prodDao.InsertProduct(prod);
         }
-        
+
+        /// <summary>
+        /// get the product current sequence current value
+        /// </summary>
+        /// <returns></returns>
+        public static int getProductCurrentVal()
+        {
+            return prodDao.getProductCurrentVal();
+        }
         /// <summary>
         /// v. Display all data for a product, 
         /// </summary>
