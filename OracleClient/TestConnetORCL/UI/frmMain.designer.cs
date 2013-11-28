@@ -52,6 +52,8 @@
             this.btn_Order = new System.Windows.Forms.Button();
             this.btn_Product = new System.Windows.Forms.Button();
             this.btn_Report = new System.Windows.Forms.Button();
+            this.orderAgingReport3060daysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.orderAgingReport6190daysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -152,7 +154,9 @@
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.orderAgingReportToolStripMenuItem,
             this.top10OutstandingCustomerToolStripMenuItem,
-            this.outstandingOrderToolStripMenuItem});
+            this.outstandingOrderToolStripMenuItem,
+            this.orderAgingReport3060daysToolStripMenuItem,
+            this.orderAgingReport6190daysToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(119, 20);
             this.toolStripMenuItem1.Text = "Report Manager(&R)";
@@ -160,8 +164,8 @@
             // orderAgingReportToolStripMenuItem
             // 
             this.orderAgingReportToolStripMenuItem.Name = "orderAgingReportToolStripMenuItem";
-            this.orderAgingReportToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
-            this.orderAgingReportToolStripMenuItem.Text = "Order Aging Report";
+            this.orderAgingReportToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.orderAgingReportToolStripMenuItem.Text = "Order Aging Report (<30days)";
             this.orderAgingReportToolStripMenuItem.Click += new System.EventHandler(this.orderAgingReportToolStripMenuItem_Click);
             // 
             // top10OutstandingCustomerToolStripMenuItem
@@ -274,6 +278,19 @@
             this.btn_Report.UseVisualStyleBackColor = true;
             this.btn_Report.Click += new System.EventHandler(this.btn_Report_Click);
             // 
+            // orderAgingReport3060daysToolStripMenuItem
+            // 
+            this.orderAgingReport3060daysToolStripMenuItem.Name = "orderAgingReport3060daysToolStripMenuItem";
+            this.orderAgingReport3060daysToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.orderAgingReport3060daysToolStripMenuItem.Text = "Order Aging Report(30-60days)";
+            // 
+            // orderAgingReport6190daysToolStripMenuItem
+            // 
+            this.orderAgingReport6190daysToolStripMenuItem.Name = "orderAgingReport6190daysToolStripMenuItem";
+            this.orderAgingReport6190daysToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.orderAgingReport6190daysToolStripMenuItem.Text = "Order Aging Report(>90days)";
+            this.orderAgingReport6190daysToolStripMenuItem.Click += new System.EventHandler(this.orderAgingReport6190daysToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -322,5 +339,7 @@
         private System.Windows.Forms.ToolStripMenuItem orderAgingReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem top10OutstandingCustomerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem outstandingOrderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem orderAgingReport3060daysToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem orderAgingReport6190daysToolStripMenuItem;
     }
 }

@@ -112,7 +112,7 @@ namespace xtreme
             e_custName.Text = customer.CustFirstName + " " + customer.CustLastName;
             txt_post.Text = customer.PostCode;
             //cb_Rate.Text = customer.DiscountRate.ToString();
-
+            
             if (String.Compare(customer.MutiAddress, "Y") == 0)
             {
                 chk_ship.Checked = true;
@@ -137,6 +137,7 @@ namespace xtreme
             o_number.Text = aOrder.OrderId.ToString();
             o_status.Text = aOrder.Status.ToString();
             txt_Rate.Text = aOrder.Discount.ToString();
+            o_date.Value = aOrder.OrderDate;
             if(aOrder.Status <=2)
             this.o_status.SelectedIndex = aOrder.Status;
         }
@@ -253,6 +254,7 @@ namespace xtreme
             retOrder.Discount = float.Parse((txt_Rate.Text == string.Empty) ? "0" : txt_Rate.Text);
             retOrder.EmployeeId = Int32.Parse(o_emp.Text==string.Empty ? "0" : txt_Rate.Text);
             retOrder.OrderDate = DateTime.Now;
+            retOrder.OrderDate = o_date.Value.Date;
             retOrder.OrderId = Int32.Parse(o_number.Text);
 
             return retOrder;

@@ -112,5 +112,17 @@ namespace xtreme
             AllOrders al = new AllOrders(3);
             al.ShowDialog();
         }
+
+        private void orderAgingReport3060daysToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AllOrders al = new AllOrders(4);
+            al.ShowDialog();
+        }
+
+        private void orderAgingReport6190daysToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AllOrders al = new AllOrders(5);
+            al.ShowDialog();
+        }
     }
 }

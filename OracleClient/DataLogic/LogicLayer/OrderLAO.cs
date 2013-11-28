@@ -48,7 +48,7 @@ namespace DataLogic.LogicLayer
         /// </summary>
         /// <param name="num"></param>
         /// <returns></returns>
-        public static List<Customer> GetTopCustomers(int num)
+        public static List<Reports> GetTopCustomers(int num)
         {
             return dao.GetTopCustomer(num);
         }

@@ -175,6 +175,7 @@ namespace xtreme
                 currentStatus = FormStatus.editing;
                 int selectIndex = dataGridView1.CurrentRow.Index;
                 currentSelectedIndex = selectIndex;
+                SetComponentsStatus(true);
                 Product p = listProducts[selectIndex];
                 SetDataValue(p);
             }

@@ -241,10 +241,44 @@ namespace DataLogic.DataAccessLayer
         /// </summary>
         /// <param name="num"></param>
         /// <returns></returns>
-        public List<Customer> GetTopCustomer(int num)
+        public List<Reports> GetTopCustomer(int num)
         {
-            List<Customer> retCustomer = new List<Customer>();
-            return retCustomer;
+            List<Reports> listReport = new List<Reports>();
+
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase();
+                commn.CommandText = "select * from (" +
+                    "select o.orderid, o.orderdate, o.customerid,c.custfname, c.custlname, sum( ol.unitprice * ol.quantity) as amount "
+                                    + " from orders o"
+                                    + " inner join orderline ol"
+                                    + " on o.orderid = ol.orderid"
+                                    + " inner join customers c"
+                                    + " on o.customerid = c.customerid"
+                                    + " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname, o.status"
+                                    + " having o.status=1"
+                                    + " order by amount desc)"
+                                    + " where rownum < "
+                                    + num;
+                OracleDataReader odr = commn.ExecuteReader();
+                while (odr.Read())
+                {
+                    Reports aReport = new Reports();
+                    aReport.orderid = odr.GetInt32(0);
+                    aReport.orderDate = odr.GetDateTime(1);
+                    aReport.customerId = odr.GetInt32(2);
+                    aReport.custFirstName = odr.GetString(3);
+                    aReport.custLastName = odr.GetString(4);
+                    aReport.amount = odr.GetFloat(5);
+                    listReport.Add(aReport);
+                }
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
+
+            return listReport;
         }
 
         

@@ -37,7 +37,7 @@ namespace TestConnetORCL.Report
             DataSet1.ReportDataTable dt = new DataSet1.ReportDataTable();
             switch (reportType)
             {
-                case 1: // aging
+                case 1: // aging < 30
                     listReport = OrderLAO.GetOrderByDate(1);
                     break;
                 case 2: //outstanding
@@ -45,6 +45,13 @@ namespace TestConnetORCL.Report
                     listReport = OrderLAO.GetOutStandingReport(1);
                     break;
                 case 3: //top customers
+                    listReport = OrderLAO.GetTopCustomers(10);
+                    break;
+                case 4: // aging > 30 < 60
+                    listReport = OrderLAO.GetOrderByDate(2);
+                    break;
+                case 5: // aging > 90
+                    listReport = OrderLAO.GetOrderByDate(3);
                     break;
                 default:
                     
