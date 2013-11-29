@@ -216,6 +216,10 @@ namespace xtreme
             {
                 MessageBox.Show("Empty quantity", "OK", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else if (o_emp.Text == string.Empty)
+            {
+                MessageBox.Show("Empty Employee id", "OK", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
             {
                 if (currentStatus == FormStatus.adding)
@@ -256,7 +260,14 @@ namespace xtreme
             retOrder.OrderDate = DateTime.Now;
             retOrder.OrderDate = o_date.Value.Date;
             retOrder.OrderId = Int32.Parse(o_number.Text);
-
+            if (o_status.Text == string.Empty)
+            {
+                retOrder.Status = 0;
+            }
+            else
+            {
+                retOrder.Status = o_status.SelectedIndex;
+            }
             return retOrder;
         }
 

@@ -28,7 +28,16 @@ namespace xtreme
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            ProductsLAO.UpdateAllPrice(float.Parse(textBox1.Text));
+            if (textBox1.Text == string.Empty)
+            {
+                MessageBox.Show("Input the right price", "OK", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                ProductsLAO.UpdateAllPrice(float.Parse(textBox1.Text));
+                MessageBox.Show("Saved", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
     }
 }

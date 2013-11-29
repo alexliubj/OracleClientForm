@@ -190,7 +190,7 @@ namespace DataLogic.DataAccessLayer
             try
             {
                 OracleCommand commn = dataConnection.ConnectToDatabase();
-                commn.CommandText = "update product set unitprice = unitprice*" + rate;
+                commn.CommandText = "update product set unitprice = unitprice*" + (1+rate/100);
                 int result = commn.ExecuteNonQuery();
                 dataConnection.CloseDatabase();
             }

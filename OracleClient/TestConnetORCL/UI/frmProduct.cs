@@ -90,7 +90,8 @@ namespace xtreme
             Product temProduct = new Product();
             temProduct = listProducts[currentSelectedIndex];
             ProductsLAO.RemoveProductById(temProduct.ProductId);
-            listProducts.RemoveAt(currentSelectedIndex);
+            //listProducts.RemoveAt(currentSelectedIndex);
+            listProducts = ProductsLAO.GetAllProducts();
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = listProducts;
         }

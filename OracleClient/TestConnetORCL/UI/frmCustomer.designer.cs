@@ -41,7 +41,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chk_ship = new System.Windows.Forms.CheckBox();
-            this.cb_Rate = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -72,6 +71,7 @@
             this.txt_Name = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cb_Rate = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -172,8 +172,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.chk_ship);
             this.groupBox1.Controls.Add(this.cb_Rate);
+            this.groupBox1.Controls.Add(this.chk_ship);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.groupBox2);
@@ -200,14 +200,6 @@
             this.chk_ship.Text = "Same as at left() or:";
             this.chk_ship.UseVisualStyleBackColor = true;
             this.chk_ship.CheckedChanged += new System.EventHandler(this.chk_ship_CheckedChanged);
-            // 
-            // cb_Rate
-            // 
-            this.cb_Rate.FormattingEnabled = true;
-            this.cb_Rate.Location = new System.Drawing.Point(149, 51);
-            this.cb_Rate.Name = "cb_Rate";
-            this.cb_Rate.Size = new System.Drawing.Size(77, 21);
-            this.cb_Rate.TabIndex = 37;
             // 
             // label17
             // 
@@ -485,6 +477,13 @@
             this.dataGridView1.TabIndex = 11;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // cb_Rate
+            // 
+            this.cb_Rate.Location = new System.Drawing.Point(149, 54);
+            this.cb_Rate.Name = "cb_Rate";
+            this.cb_Rate.Size = new System.Drawing.Size(100, 20);
+            this.cb_Rate.TabIndex = 40;
+            // 
             // frmCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -536,7 +535,6 @@
         private System.Windows.Forms.TextBox txt_Add;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox chk_ship;
-        private System.Windows.Forms.ComboBox cb_Rate;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label4;
@@ -556,5 +554,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txt_Phone;
+        private System.Windows.Forms.TextBox cb_Rate;
     }
 }

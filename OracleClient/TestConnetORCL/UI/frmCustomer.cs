@@ -228,12 +228,20 @@ namespace xtreme
                             Customer insertCustomer = GetAllCustomerFromComponents();
                             CustomerLAO.addNewCustomer(insertCustomer);
                         }
+
+                        listCustomer = CustomerLAO.GetAllCustomers();
+                        dataGridView1.DataSource = null;
+                        dataGridView1.DataSource = listCustomer;
                     }
                     break;
                 case currentStatusEnum.editingStatus:
                     {
                         Customer updateCustomer = GetAllCustomerFromComponents();
                         CustomerLAO.UpdateCustomer(updateCustomer);
+
+                        listCustomer = CustomerLAO.GetAllCustomers();
+                        dataGridView1.DataSource = null;
+                        dataGridView1.DataSource = listCustomer;
                     }
                     break;
                 case currentStatusEnum.nonStatus:

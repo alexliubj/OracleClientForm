@@ -132,7 +132,7 @@ namespace DataLogic.DataAccessLayer
                             "s.shippingfname,s.shippingstreet, s.shippingstate,s.shippingcity,s.shippingphone,s.SHIPPINGLNAME,s.shippingpost,CUSTNAME " +
                             "from customers cus left join shippinginfo s " +
                             "on cus.customerid = s.customerid " +
-                            "where cus.custfname || ' ' || cus.custlname =" + "'" + customerName + "'";
+                            "where LOWER(cus.custfname || ' ' || cus.custlname) =" + "'" + customerName + "'";
                 OracleDataReader odr = commn.ExecuteReader();
                 while (odr.Read())
                 {
