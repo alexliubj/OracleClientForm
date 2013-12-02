@@ -45,7 +45,7 @@ namespace xtreme
         { 
         }
 
-        private void UpdateBottomInformation()
+        private void UpdateBottomInformationEdit()
         {
             float grantPrcie = 0.0f;
             float totalPrice = 0.0f;
@@ -64,6 +64,31 @@ namespace xtreme
                 }
             }
             totalPrice = grantPrcie * ((txt_Rate.Text == string.Empty) ? 1 : float.Parse(txt_Rate.Text)) * 1.13f;
+            txt_hst.Text = "13%";
+            txt_GrandTotal.Text = grantPrcie.ToString();
+            txt_Total.Text = totalPrice.ToString();
+        }
+
+
+        private void UpdateBottomInformation()
+        {
+            float grantPrcie = 0.0f;
+            float totalPrice = 0.0f;
+            if (currentStatus == FormStatus.adding)
+            {
+                foreach (ShowProdut ol in showProdut)
+                {
+                    grantPrcie += ol.UnitPrice;
+                }
+            }
+            if (currentStatus == FormStatus.editing || currentStatus == FormStatus.nonstatus)
+            {
+                foreach (OrderLines ol in orderLine)
+                {
+                    grantPrcie += ol.UnitPrice;
+                }
+            }
+            totalPrice = grantPrcie * ((txt_Rate.Text == string.Empty || txt_Rate.Text == "0") ? 1 : float.Parse(txt_Rate.Text)) * 1.13f;
             txt_hst.Text = "13%";
             txt_GrandTotal.Text = grantPrcie.ToString();
             txt_Total.Text = totalPrice.ToString();
@@ -138,6 +163,7 @@ namespace xtreme
             o_status.Text = aOrder.Status.ToString();
             txt_Rate.Text = aOrder.Discount.ToString();
             o_date.Value = aOrder.OrderDate;
+           // o_date_shp.Value = aOrder.ShipDate;
             if(aOrder.Status <=2)
             this.o_status.SelectedIndex = aOrder.Status;
         }
@@ -193,7 +219,21 @@ namespace xtreme
 
                 this.comb_prod.SelectedIndex = 0;
             }
+            listcostomer = CustomerLAO.GetAllCustomers();
+            if (listcostomer.Count > 0)
+            {
+                string[] customerIdlist = new string[listcostomer.Count];
+                for (int i = 0; i < listcostomer.Count; i++)
+                {
+                    customerIdlist[i] = ((Customer)(listcostomer[i])).CustomerId.ToString();
+                }
 
+                this.cb_cusId.Items.AddRange(customerIdlist);
+                this.cb_cusId.SelectedIndex = 0;
+                Customer aCusotomer = new Customer();
+                aCusotomer = listcostomer[0];
+                SetCustomerInformation(aCusotomer);
+            }
             setAddressEnable(true);
         }
 
@@ -256,9 +296,10 @@ namespace xtreme
             Order retOrder = new Order();
             retOrder.customerId = Int32.Parse(e_cust.Text);
             retOrder.Discount = float.Parse((txt_Rate.Text == string.Empty) ? "0" : txt_Rate.Text);
-            retOrder.EmployeeId = Int32.Parse(o_emp.Text==string.Empty ? "0" : txt_Rate.Text);
+            retOrder.EmployeeId = Int32.Parse(o_emp.Text==string.Empty ? "0" : o_emp.Text);
             retOrder.OrderDate = DateTime.Now;
             retOrder.OrderDate = o_date.Value.Date;
+            retOrder.ShipDate = o_date_shp.Value.Date;
             retOrder.OrderId = Int32.Parse(o_number.Text);
             if (o_status.Text == string.Empty)
             {
@@ -300,7 +341,12 @@ namespace xtreme
         //get customer by customer first name
         private void but_GetCustomer_Click(object sender, EventArgs e)
         {
-            listcostomer = CustomerLAO.GetCustomerByName(e_custName.Text);
+            if (e_custName.Text == string.Empty)
+            {
+                listcostomer = CustomerLAO.GetAllCustomers();
+            }
+            else
+                listcostomer = CustomerLAO.GetCustomerByName(e_custName.Text);
 
             cb_cusId.Items.Clear();
             cb_cusId.Enabled = true;
@@ -339,6 +385,7 @@ namespace xtreme
                 SetAllProductInformation();
                 currentStatus = FormStatus.editing;
                 UpdateBottomInformation();
+
             }
             if (currentStatus == FormStatus.adding)
             {

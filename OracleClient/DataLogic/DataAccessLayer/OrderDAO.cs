@@ -70,7 +70,7 @@ namespace DataLogic.DataAccessLayer
             try
             {
                 OracleCommand commn = dataConnection.ConnectToDatabase();
-                commn.CommandText = "select o.orderlineid, p.productId, p.productname, o.quantity from product p inner join orderline o " +
+                commn.CommandText = "select o.orderlineid, p.productId, p.productname, o.quantity, o.UNITPRICE from product p inner join orderline o " +
                     "on p.productid = o.productid where o.orderid=" + orderId;
                 OracleDataReader odr = commn.ExecuteReader();
                 while (odr.Read())
@@ -83,6 +83,7 @@ namespace DataLogic.DataAccessLayer
                     aProduct.ProductId = odr.GetInt32(1);
                     aProduct.ProductName = odr.GetString(2);
                     odrLine.Quantity = odr.GetInt32(3);
+                    odrLine.UnitPrice = odr.GetFloat(4);
                     odrLine.ProductInfo = aProduct;
                     aLine.Add(odrLine);
                 }
@@ -157,8 +158,16 @@ namespace DataLogic.DataAccessLayer
                 int result = commn.ExecuteNonQuery();
                 foreach (OrderLines line in lines)
                 {
+                    int orderlineid = 0;
+                    commn = dataConnection.ConnectToDatabase();
+                    commn.CommandText = "select ORDERLINE_SEQ.nextVal from dual";
+                    OracleDataReader odr = commn.ExecuteReader();
+                    while (odr.Read())
+                    {
+                        orderlineid = odr.GetInt32(0);
+                    }
                     commn = dataConnection.ConnectToDatabase("insert into orderline values (:ORDERLINEID,:ORDERID,:PRODUCTID,:UNITPRICE,:QUANTITY)");
-                    commn.Parameters.Add(new OracleParameter("ORDERLINEID", line.OrderLineId));
+                    commn.Parameters.Add(new OracleParameter("ORDERLINEID", orderlineid));
                     commn.Parameters.Add(new OracleParameter("ORDERID", line.OrderId));
                     commn.Parameters.Add(new OracleParameter("PRODUCTID", line.ProductId));
                     commn.Parameters.Add(new OracleParameter("UNITPRICE", line.UnitPrice));

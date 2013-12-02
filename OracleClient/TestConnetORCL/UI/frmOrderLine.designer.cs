@@ -94,6 +94,8 @@
             this.label23 = new System.Windows.Forms.Label();
             this.e_cust = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.o_date_shp = new System.Windows.Forms.DateTimePicker();
+            this.shipdate = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -335,6 +337,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.shipdate);
+            this.groupBox1.Controls.Add(this.o_date_shp);
             this.groupBox1.Controls.Add(this.btn_delete);
             this.groupBox1.Controls.Add(this.cb_cusId);
             this.groupBox1.Controls.Add(this.btn_add);
@@ -514,7 +518,7 @@
             // 
             // o_emp
             // 
-            this.o_emp.Location = new System.Drawing.Point(636, 17);
+            this.o_emp.Location = new System.Drawing.Point(822, 25);
             this.o_emp.Name = "o_emp";
             this.o_emp.Size = new System.Drawing.Size(77, 20);
             this.o_emp.TabIndex = 49;
@@ -522,7 +526,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(555, 21);
+            this.label13.Location = new System.Drawing.Point(749, 24);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(67, 13);
             this.label13.TabIndex = 48;
@@ -530,7 +534,7 @@
             // 
             // o_date
             // 
-            this.o_date.Location = new System.Drawing.Point(326, 21);
+            this.o_date.Location = new System.Drawing.Point(274, 21);
             this.o_date.Name = "o_date";
             this.o_date.Size = new System.Drawing.Size(200, 20);
             this.o_date.TabIndex = 47;
@@ -741,6 +745,22 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Customer ID";
             // 
+            // o_date_shp
+            // 
+            this.o_date_shp.Location = new System.Drawing.Point(537, 22);
+            this.o_date_shp.Name = "o_date_shp";
+            this.o_date_shp.Size = new System.Drawing.Size(200, 20);
+            this.o_date_shp.TabIndex = 64;
+            // 
+            // shipdate
+            // 
+            this.shipdate.AutoSize = true;
+            this.shipdate.Location = new System.Drawing.Point(480, 24);
+            this.shipdate.Name = "shipdate";
+            this.shipdate.Size = new System.Drawing.Size(51, 13);
+            this.shipdate.TabIndex = 65;
+            this.shipdate.Text = "ShipDate";
+            // 
             // frmOrderLine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -834,5 +854,7 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.ComboBox cb_cusId;
         private System.Windows.Forms.Button btn_delete;
+        private System.Windows.Forms.Label shipdate;
+        private System.Windows.Forms.DateTimePicker o_date_shp;
     }
 }
