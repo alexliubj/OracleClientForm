@@ -10,6 +10,68 @@ namespace DataLogic.DataAccessLayer
     {
 
         private DataConnection dataConnection = new DataConnection();
+
+        /// <summary>
+        /// get all orders combine orderline and amount
+        /// </summary>
+        /// <returns></returns>
+        public List<Reports> GetAllOrderWithInfo(int orderId, bool outstanding)
+        {
+            List<Reports> listReport = new List<Reports>();
+
+            try
+            {
+                OracleCommand commn = dataConnection.ConnectToDatabase();
+                if(orderId == 0)
+                {
+                    commn.CommandText = "select o.orderid, o.orderdate, o.customerid,c.custfname, c.custlname, sum( ol.unitprice * ol.quantity) as amount "
+                                    + " from orders o"
+                                    + " inner join orderline ol"
+                                    + " on o.orderid = ol.orderid"
+                                    + " inner join customers c"
+                                    + " on o.customerid = c.customerid";
+                    if (outstanding)
+                        commn.CommandText += " where o.status = 1";
+                    commn.CommandText += " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname"
+                    + " order by amount desc";
+                }
+                else
+                {
+                    commn.CommandText = "select o.orderid, o.orderdate, o.customerid,c.custfname, c.custlname, sum( ol.unitprice * ol.quantity) as amount "
+                                    + " from orders o"
+                                    + " inner join orderline ol"
+                                    + " on o.orderid = ol.orderid"
+                                    + " inner join customers c"
+                                    + " on o.customerid = c.customerid";
+                    if (outstanding)
+                        commn.CommandText += " where o.orderid = " + orderId + " and o.status = " + "1";
+                    else
+                        commn.CommandText += " where o.orderid = " + orderId;
+
+                    commn.CommandText += " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname"
+                                    + " order by amount desc";
+                }
+                OracleDataReader odr = commn.ExecuteReader();
+                while (odr.Read())
+                {
+                    Reports aReport = new Reports();
+                    aReport.orderid = odr.GetInt32(0);
+                    aReport.orderDate = odr.GetDateTime(1);
+                    aReport.customerId = odr.GetInt32(2);
+                    aReport.custFirstName = odr.GetString(3);
+                    aReport.custLastName = odr.GetString(4);
+                    aReport.amount = odr.GetFloat(5);
+                    aReport.GrantAmount = aReport.amount * 0.13f;
+                    listReport.Add(aReport);
+                }
+                dataConnection.CloseDatabase();
+            }
+            catch (Exception e)
+            { }
+            finally { dataConnection.CloseDatabase(); }
+
+            return listReport;
+        }
         /// <summary>
         /// get all orders
         /// </summary>
@@ -279,6 +341,7 @@ namespace DataLogic.DataAccessLayer
                     aReport.custFirstName = odr.GetString(3);
                     aReport.custLastName = odr.GetString(4);
                     aReport.amount = odr.GetFloat(5);
+                    aReport.GrantAmount = aReport.amount * 0.13f;
                     listReport.Add(aReport);
                 }
                 dataConnection.CloseDatabase();
@@ -323,6 +386,7 @@ namespace DataLogic.DataAccessLayer
                     aReport.custFirstName = odr.GetString(3);
                     aReport.custLastName = odr.GetString(4);
                     aReport.amount = odr.GetFloat(5);
+                    aReport.GrantAmount = aReport.amount * 0.13f;
                     listReport.Add(aReport);
                 }
                 dataConnection.CloseDatabase();
@@ -395,6 +459,7 @@ namespace DataLogic.DataAccessLayer
                     aReport.custFirstName = odr.GetString(3);
                     aReport.custLastName = odr.GetString(4);
                     aReport.amount = odr.GetFloat(5);
+                    aReport.GrantAmount = aReport.amount * 0.13f;
                     listReport.Add(aReport);
                 }
                 dataConnection.CloseDatabase();

@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.OracleClient;
+using System.Collections.Specialized;
+using  System.Configuration;
+
 namespace DataLogic.DataAccessLayer
 {
     public class DataConnection
     {
-        private string connstring = "user id=comp214_f13_102;password=password;data source=" +
-                "(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)" +
-                "(HOST=oracle1.centennialcollege.ca)(PORT=1521))(CONNECT_DATA=" +
-                "(SERVICE_NAME=SQLD)))";
+
+        private string connstring = System.Configuration.ConfigurationSettings.AppSettings["ConnectionString"];
+
         private OracleConnection conn;
         public void CloseDatabase()
         {

@@ -19,6 +19,11 @@ namespace DataLogic.LogicLayer
             dao.AddOrder(order,line);
         }
 
+        public static List<Reports> GetAllOrderWithInfo(int orderId,bool outstanding)
+        {
+           return dao.GetAllOrderWithInfo(orderId, outstanding);
+        }
+
         public static List<Order> GetAllOrders()
         {
             return dao.GetAllOrder();

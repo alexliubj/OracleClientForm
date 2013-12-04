@@ -34,7 +34,7 @@ namespace TestConnetORCL.Report
 
         public DataTable GetReportFromDS(int reportType)
         {
-            DataSet1.ReportDataTable dt = new DataSet1.ReportDataTable();
+            DataSet1.ReportsDataTable dt = new DataSet1.ReportsDataTable();
             switch (reportType)
             {
                 case 1: // aging < 30
@@ -58,13 +58,13 @@ namespace TestConnetORCL.Report
                     break;
             }
 
-             dt = (DataSet1.ReportDataTable)SetReprots(listReport);
+             dt = (DataSet1.ReportsDataTable)SetReprots(listReport);
              return dt;
         }
 
         public static DataTable SetReprots(List<Reports> listReprots)
         {
-            DataSet1.ReportDataTable dt = new DataSet1.ReportDataTable();
+            DataSet1.ReportsDataTable dt = new DataSet1.ReportsDataTable();
             try
             {
                 foreach (var cust in listReprots)

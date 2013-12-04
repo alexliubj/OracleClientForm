@@ -21,8 +21,8 @@ namespace TestConnetORCL.Report
         public ReportForm(DataTable dt)
         {
             InitializeComponent();
-            
-            CustomerReport cr = new CustomerReport();
+
+            ReportOrder cr = new ReportOrder();
             cr.SetDataSource(dt);
             crystalReportViewer1.ReportSource = cr;
         }

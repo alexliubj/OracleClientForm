@@ -19,6 +19,7 @@ namespace xtreme
     public partial class frmOrderQuery : Form
     {
         private List<Order> listOrder = new List<Order>();
+        private List<Reports> listReports = new List<Reports>();
         public frmOrderQuery()
         {
             InitializeComponent();
@@ -39,31 +40,31 @@ namespace xtreme
 
         private void button1_Click(object sender, EventArgs e)
         {
-            listOrder.Clear();
+            listReports.Clear();
             if (cbx_id.Text == string.Empty)
             {
-                listOrder = OrderLAO.GetAllOrders();
+                listReports = OrderLAO.GetAllOrderWithInfo(0, chk_Pending.Checked);
             }
             else {
                 Order o = new Order();
-                listOrder.Add(OrderLAO.GetOrderById(Int32.Parse(cbx_id.Text)));
+                listReports = OrderLAO.GetAllOrderWithInfo(Int32.Parse(cbx_id.Text), chk_Pending.Checked);
             }
 
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = listOrder;
+            dataGridView1.DataSource = listReports;
         }
 
         private void butGPA_Click(object sender, EventArgs e)
         {
-            DataSet1.OrderDataTable dt = new DataSet1.OrderDataTable();
-            dt = (DataSet1.OrderDataTable)SetOrderDetails(listOrder);
-            OrderReportForm rf = new OrderReportForm(dt);
+            DataSet1.ReportsDataTable dt = new DataSet1.ReportsDataTable();
+            dt = (DataSet1.ReportsDataTable)SetOrderDetails(listReports);
+            ReportForm rf = new ReportForm(dt);
             rf.Show();
         }
 
-        public static DataTable SetOrderDetails(List<Order> orderlist)
+        public static DataTable SetOrderDetails(List<Reports> orderlist)
         {
-            DataSet1.OrderDataTable dt = new DataSet1.OrderDataTable();
+            DataSet1.ReportsDataTable dt = new DataSet1.ReportsDataTable();
             try
             {
                 foreach (var cust in orderlist)
@@ -71,7 +72,7 @@ namespace xtreme
                     DataRow newRow = dt.NewRow();
                     foreach (PropertyInfo property in cust.GetType().GetProperties())
                     {
-                        if (property.Name != "OrderLine")
+                       // if (property.Name != "OrderLine")
                             newRow[property.Name] = cust.GetType().GetProperty(property.Name).GetValue(cust, null);
                     }
                     dt.Rows.Add(newRow);

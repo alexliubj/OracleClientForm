@@ -56,7 +56,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Report" msprop:Generator_TableClassName="ReportDataTable" msprop:Generator_TableVarName="tableReport" msprop:Generator_RowChangedName="ReportRowChanged" msprop:Generator_TablePropName="Report" msprop:Generator_RowDeletingName="ReportRowDeleting" msprop:Generator_RowChangingName="ReportRowChanging" msprop:Generator_RowEvHandlerName="ReportRowChangeEventHandler" msprop:Generator_RowDeletedName="ReportRowDeleted" msprop:Generator_RowClassName="ReportRow" msprop:Generator_UserTableName="Report" msprop:Generator_RowEvArgName="ReportRowChangeEvent">
+        <xs:element name="Report" msprop:Generator_TableClassName="ReportDataTable" msprop:Generator_TableVarName="tableReport" msprop:Generator_TablePropName="Report" msprop:Generator_RowDeletingName="ReportRowDeleting" msprop:Generator_RowChangingName="ReportRowChanging" msprop:Generator_RowEvHandlerName="ReportRowChangeEventHandler" msprop:Generator_RowDeletedName="ReportRowDeleted" msprop:Generator_UserTableName="Report" msprop:Generator_RowChangedName="ReportRowChanged" msprop:Generator_RowEvArgName="ReportRowChangeEvent" msprop:Generator_RowClassName="ReportRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="orderid" msprop:Generator_ColumnVarNameInTable="columnorderid" msprop:Generator_ColumnPropNameInRow="orderid" msprop:Generator_ColumnPropNameInTable="orderidColumn" msprop:Generator_UserColumnName="orderid" type="xs:string" minOccurs="0" />
@@ -65,6 +65,22 @@
               <xs:element name="custFirstName" msprop:Generator_ColumnVarNameInTable="columncustFirstName" msprop:Generator_ColumnPropNameInRow="custFirstName" msprop:Generator_ColumnPropNameInTable="custFirstNameColumn" msprop:Generator_UserColumnName="custFirstName" type="xs:string" minOccurs="0" />
               <xs:element name="custLastName" msprop:Generator_ColumnVarNameInTable="columncustLastName" msprop:Generator_ColumnPropNameInRow="custLastName" msprop:Generator_ColumnPropNameInTable="custLastNameColumn" msprop:Generator_UserColumnName="custLastName" type="xs:string" minOccurs="0" />
               <xs:element name="amount" msprop:Generator_ColumnVarNameInTable="columnamount" msprop:Generator_ColumnPropNameInRow="amount" msprop:Generator_ColumnPropNameInTable="amountColumn" msprop:Generator_UserColumnName="amount" type="xs:string" minOccurs="0" />
+              <xs:element name="HST" msprop:Generator_ColumnVarNameInTable="columnHST" msprop:Generator_ColumnPropNameInRow="HST" msprop:Generator_ColumnPropNameInTable="HSTColumn" msprop:Generator_UserColumnName="HST" type="xs:string" minOccurs="0" />
+              <xs:element name="GrantAmount" msprop:Generator_ColumnVarNameInTable="columnGrantAmount" msprop:Generator_ColumnPropNameInRow="GrantAmount" msprop:Generator_ColumnPropNameInTable="GrantAmountColumn" msprop:Generator_UserColumnName="GrantAmount" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Reports" msprop:Generator_TableClassName="ReportsDataTable" msprop:Generator_TableVarName="tableReports" msprop:Generator_TablePropName="Reports" msprop:Generator_RowDeletingName="ReportsRowDeleting" msprop:Generator_RowChangingName="ReportsRowChanging" msprop:Generator_RowEvHandlerName="ReportsRowChangeEventHandler" msprop:Generator_RowDeletedName="ReportsRowDeleted" msprop:Generator_UserTableName="Reports" msprop:Generator_RowChangedName="ReportsRowChanged" msprop:Generator_RowEvArgName="ReportsRowChangeEvent" msprop:Generator_RowClassName="ReportsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="orderid" msprop:Generator_ColumnVarNameInTable="columnorderid" msprop:Generator_ColumnPropNameInRow="orderid" msprop:Generator_ColumnPropNameInTable="orderidColumn" msprop:Generator_UserColumnName="orderid" type="xs:string" minOccurs="0" />
+              <xs:element name="orderDate" msprop:Generator_ColumnVarNameInTable="columnorderDate" msprop:Generator_ColumnPropNameInRow="orderDate" msprop:Generator_ColumnPropNameInTable="orderDateColumn" msprop:Generator_UserColumnName="orderDate" type="xs:string" minOccurs="0" />
+              <xs:element name="customerId" msprop:Generator_ColumnVarNameInTable="columncustomerId" msprop:Generator_ColumnPropNameInRow="customerId" msprop:Generator_ColumnPropNameInTable="customerIdColumn" msprop:Generator_UserColumnName="customerId" type="xs:string" minOccurs="0" />
+              <xs:element name="custFirstName" msprop:Generator_ColumnVarNameInTable="columncustFirstName" msprop:Generator_ColumnPropNameInRow="custFirstName" msprop:Generator_ColumnPropNameInTable="custFirstNameColumn" msprop:Generator_UserColumnName="custFirstName" type="xs:string" minOccurs="0" />
+              <xs:element name="custLastName" msprop:Generator_ColumnVarNameInTable="columncustLastName" msprop:Generator_ColumnPropNameInRow="custLastName" msprop:Generator_ColumnPropNameInTable="custLastNameColumn" msprop:Generator_UserColumnName="custLastName" type="xs:string" minOccurs="0" />
+              <xs:element name="amount" msprop:Generator_ColumnVarNameInTable="columnamount" msprop:Generator_ColumnPropNameInRow="amount" msprop:Generator_ColumnPropNameInTable="amountColumn" msprop:Generator_UserColumnName="amount" type="xs:string" minOccurs="0" />
+              <xs:element name="HST" msprop:Generator_ColumnVarNameInTable="columnHST" msprop:Generator_ColumnPropNameInRow="HST" msprop:Generator_ColumnPropNameInTable="HSTColumn" msprop:Generator_UserColumnName="HST" type="xs:string" minOccurs="0" />
+              <xs:element name="GrantAmount" msprop:Generator_ColumnVarNameInTable="columnGrantAmount" msprop:Generator_ColumnPropNameInRow="GrantAmount" msprop:Generator_ColumnPropNameInTable="GrantAmountColumn" msprop:Generator_UserColumnName="GrantAmount" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
