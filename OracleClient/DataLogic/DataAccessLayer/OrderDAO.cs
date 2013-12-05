@@ -31,7 +31,7 @@ namespace DataLogic.DataAccessLayer
                                     + " inner join customers c"
                                     + " on o.customerid = c.customerid";
                     if (outstanding)
-                        commn.CommandText += " where o.status = 1";
+                        commn.CommandText += " where o.status = 0";
                     commn.CommandText += " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname"
                     + " order by amount desc";
                 }
@@ -44,7 +44,7 @@ namespace DataLogic.DataAccessLayer
                                     + " inner join customers c"
                                     + " on o.customerid = c.customerid";
                     if (outstanding)
-                        commn.CommandText += " where o.orderid = " + orderId + " and o.status = " + "1";
+                        commn.CommandText += " where o.orderid = " + orderId + " and o.status = " + "0";
                     else
                         commn.CommandText += " where o.orderid = " + orderId;
 
@@ -374,7 +374,7 @@ namespace DataLogic.DataAccessLayer
                                     + " inner join customers c"
                                     + " on o.customerid = c.customerid"
                                     + " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname, o.status"
-                                    + " having o.status=1"
+                                    + " having o.status=0"
                                     + " order by amount desc";
                 OracleDataReader odr = commn.ExecuteReader();
                 while (odr.Read())
@@ -439,7 +439,7 @@ namespace DataLogic.DataAccessLayer
                                     + " inner join customers c"
                                     + " on o.customerid = c.customerid"
                                     + " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname, o.status"
-                                    + " having o.status=1";
+                                    + " having o.status=0";
                 if (daysType == 1)
                 { commn.CommandText += " and sysdate - o.orderdate <30"; }
                 else if (daysType == 2)

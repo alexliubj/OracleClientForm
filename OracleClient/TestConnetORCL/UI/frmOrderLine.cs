@@ -63,7 +63,10 @@ namespace xtreme
                     grantPrcie += ol.UnitPrice * ol.Quantity;
                 }
             }
-            totalPrice = grantPrcie * ((txt_Rate.Text == string.Empty || txt_Rate.Text == "0") ? 1 : float.Parse(txt_Rate.Text)) * 1.13f;
+
+            float discount = txt_Rate.Text == string.Empty ? 0 : float.Parse(txt_Rate.Text);
+            discount = 1 - discount / 100;
+            totalPrice = grantPrcie * discount * 1.13f;
             txt_hst.Text = "13%";
             txt_GrandTotal.Text = grantPrcie.ToString();
             txt_Total.Text = totalPrice.ToString();
@@ -112,7 +115,7 @@ namespace xtreme
             e_custName.Text = customer.CustFirstName + " " + customer.CustLastName;
             txt_post.Text = customer.PostCode;
             //cb_Rate.Text = customer.DiscountRate.ToString();
-            
+            txt_Rate.Text = customer.DiscountRate.ToString();
             if (String.Compare(customer.MutiAddress, "Y") == 0)
             {
                 chk_ship.Checked = true;

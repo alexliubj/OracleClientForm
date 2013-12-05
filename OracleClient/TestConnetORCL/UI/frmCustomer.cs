@@ -104,7 +104,7 @@ namespace xtreme
                 aInfo.ShippingLastName = m_last.Text;
                 aInfo.ShipppingPost = m_postcode.Text;
                 aInfo.ShippingState = m_state.Text;
-                aInfo.ShippingPhone = Int32.Parse(m_Phone.Text.ToString());
+                aInfo.ShippingPhone = m_Phone.Text.ToString();
                 aCustomer.ShipInfo = aInfo;
             }
             else

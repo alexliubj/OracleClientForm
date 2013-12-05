@@ -92,7 +92,7 @@ namespace xtreme
 
         private void UserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("CentennialSoft", "OK", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            MessageBox.Show("Centennial Student Oracle Project", "OK", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void orderAgingReportToolStripMenuItem_Click(object sender, EventArgs e)

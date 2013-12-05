@@ -50,7 +50,7 @@ namespace DataLogic.DataAccessLayer
                         shipinfo.ShippingStreet = odr.GetString(14);
                         shipinfo.ShippingState = odr.GetString(15);
                         shipinfo.ShippingCity = odr.GetString(16);
-                        shipinfo.ShippingPhone = odr.GetInt32(17);
+                        shipinfo.ShippingPhone = odr.GetString(17);
                         shipinfo.ShippingLastName = odr.GetString(18);
                         shipinfo.ShipppingPost = odr.GetString(19);
                         aCustomer.ShipInfo = shipinfo;
@@ -108,7 +108,7 @@ namespace DataLogic.DataAccessLayer
                         shipinfo.ShippingStreet = odr.GetString(14);
                         shipinfo.ShippingState = odr.GetString(15);
                         shipinfo.ShippingCity = odr.GetString(16);
-                        shipinfo.ShippingPhone = odr.GetInt32(17);
+                        shipinfo.ShippingPhone = odr.GetString(17);
                         shipinfo.ShippingLastName = odr.GetString(18);
                         shipinfo.ShipppingPost = odr.GetString(19);
                         aCustomer.ShipInfo = shipinfo;
@@ -160,7 +160,7 @@ namespace DataLogic.DataAccessLayer
                         shipinfo.ShippingStreet = odr.GetString(14);
                         shipinfo.ShippingState = odr.GetString(15);
                         shipinfo.ShippingCity = odr.GetString(16);
-                        shipinfo.ShippingPhone = odr.GetInt32(17);
+                        shipinfo.ShippingPhone = odr.GetString(17);
                         shipinfo.ShippingLastName = odr.GetString(18);
                         shipinfo.ShipppingPost = odr.GetString(19);
                         aCustomer.ShipInfo = shipinfo;

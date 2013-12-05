@@ -112,7 +112,7 @@
             this.butGPA.Name = "butGPA";
             this.butGPA.Size = new System.Drawing.Size(107, 25);
             this.butGPA.TabIndex = 7;
-            this.butGPA.Text = "Aging Report";
+            this.butGPA.Text = "Print";
             this.butGPA.UseVisualStyleBackColor = true;
             this.butGPA.Click += new System.EventHandler(this.butGPA_Click);
             // 

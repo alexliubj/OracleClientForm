@@ -1,0 +1,1 @@
+C:\Users\Administrator\Desktop\Projects\db\CSharpForm\TestConnetORCL\OracleClientForm\OracleClient\TestConnetORCL\bin\Debug\TestConnetORCL.exe.config

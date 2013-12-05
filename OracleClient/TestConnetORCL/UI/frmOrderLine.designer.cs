@@ -54,6 +54,8 @@
             this.chk_ship = new System.Windows.Forms.CheckBox();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.shipdate = new System.Windows.Forms.Label();
+            this.o_date_shp = new System.Windows.Forms.DateTimePicker();
             this.btn_delete = new System.Windows.Forms.Button();
             this.cb_cusId = new System.Windows.Forms.ComboBox();
             this.btn_add = new System.Windows.Forms.Button();
@@ -94,8 +96,6 @@
             this.label23 = new System.Windows.Forms.Label();
             this.e_cust = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.o_date_shp = new System.Windows.Forms.DateTimePicker();
-            this.shipdate = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -379,6 +379,22 @@
             this.groupBox1.Text = "Order Information";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // shipdate
+            // 
+            this.shipdate.AutoSize = true;
+            this.shipdate.Location = new System.Drawing.Point(480, 24);
+            this.shipdate.Name = "shipdate";
+            this.shipdate.Size = new System.Drawing.Size(51, 13);
+            this.shipdate.TabIndex = 65;
+            this.shipdate.Text = "ShipDate";
+            // 
+            // o_date_shp
+            // 
+            this.o_date_shp.Location = new System.Drawing.Point(537, 22);
+            this.o_date_shp.Name = "o_date_shp";
+            this.o_date_shp.Size = new System.Drawing.Size(200, 20);
+            this.o_date_shp.TabIndex = 64;
+            // 
             // btn_delete
             // 
             this.btn_delete.Image = ((System.Drawing.Image)(resources.GetObject("btn_delete.Image")));
@@ -543,7 +559,7 @@
             // 
             this.o_status.FormattingEnabled = true;
             this.o_status.Items.AddRange(new object[] {
-            "Pending",
+            "Processing",
             "Complete",
             "Cancel"});
             this.o_status.Location = new System.Drawing.Point(137, 85);
@@ -744,22 +760,6 @@
             this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Customer ID";
-            // 
-            // o_date_shp
-            // 
-            this.o_date_shp.Location = new System.Drawing.Point(537, 22);
-            this.o_date_shp.Name = "o_date_shp";
-            this.o_date_shp.Size = new System.Drawing.Size(200, 20);
-            this.o_date_shp.TabIndex = 64;
-            // 
-            // shipdate
-            // 
-            this.shipdate.AutoSize = true;
-            this.shipdate.Location = new System.Drawing.Point(480, 24);
-            this.shipdate.Name = "shipdate";
-            this.shipdate.Size = new System.Drawing.Size(51, 13);
-            this.shipdate.TabIndex = 65;
-            this.shipdate.Text = "ShipDate";
             // 
             // frmOrderLine
             // 
