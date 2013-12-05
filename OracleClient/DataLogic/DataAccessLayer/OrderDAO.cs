@@ -61,7 +61,7 @@ namespace DataLogic.DataAccessLayer
                     aReport.custFirstName = odr.GetString(3);
                     aReport.custLastName = odr.GetString(4);
                     aReport.amount = odr.GetFloat(5);
-                    aReport.GrantAmount = aReport.amount * 0.13f;
+                    aReport.GrantAmount = aReport.amount * 1.13f;
                     listReport.Add(aReport);
                 }
                 dataConnection.CloseDatabase();
@@ -341,7 +341,7 @@ namespace DataLogic.DataAccessLayer
                     aReport.custFirstName = odr.GetString(3);
                     aReport.custLastName = odr.GetString(4);
                     aReport.amount = odr.GetFloat(5);
-                    aReport.GrantAmount = aReport.amount * 0.13f;
+                    aReport.GrantAmount = aReport.amount * 1.13f;
                     listReport.Add(aReport);
                 }
                 dataConnection.CloseDatabase();
@@ -386,7 +386,7 @@ namespace DataLogic.DataAccessLayer
                     aReport.custFirstName = odr.GetString(3);
                     aReport.custLastName = odr.GetString(4);
                     aReport.amount = odr.GetFloat(5);
-                    aReport.GrantAmount = aReport.amount * 0.13f;
+                    aReport.GrantAmount = aReport.amount * 1.13f;
                     listReport.Add(aReport);
                 }
                 dataConnection.CloseDatabase();
@@ -459,7 +459,7 @@ namespace DataLogic.DataAccessLayer
                     aReport.custFirstName = odr.GetString(3);
                     aReport.custLastName = odr.GetString(4);
                     aReport.amount = odr.GetFloat(5);
-                    aReport.GrantAmount = aReport.amount * 0.13f;
+                    aReport.GrantAmount = aReport.amount * 1.13f;
                     listReport.Add(aReport);
                 }
                 dataConnection.CloseDatabase();

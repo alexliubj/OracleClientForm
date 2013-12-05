@@ -45,31 +45,6 @@ namespace xtreme
         { 
         }
 
-        private void UpdateBottomInformationEdit()
-        {
-            float grantPrcie = 0.0f;
-            float totalPrice = 0.0f;
-            if (currentStatus == FormStatus.adding)
-            {
-                foreach (ShowProdut ol in showProdut)
-                {
-                    grantPrcie += ol.UnitPrice;
-                }
-            }
-            if (currentStatus == FormStatus.editing || currentStatus == FormStatus.nonstatus)
-            {
-                foreach (OrderLines ol in orderLine)
-                {
-                    grantPrcie += ol.UnitPrice;
-                }
-            }
-            totalPrice = grantPrcie * ((txt_Rate.Text == string.Empty) ? 1 : float.Parse(txt_Rate.Text)) * 1.13f;
-            txt_hst.Text = "13%";
-            txt_GrandTotal.Text = grantPrcie.ToString();
-            txt_Total.Text = totalPrice.ToString();
-        }
-
-
         private void UpdateBottomInformation()
         {
             float grantPrcie = 0.0f;
@@ -78,14 +53,14 @@ namespace xtreme
             {
                 foreach (ShowProdut ol in showProdut)
                 {
-                    grantPrcie += ol.UnitPrice;
+                    grantPrcie += ol.UnitPrice * ol.Quantiy;
                 }
             }
             if (currentStatus == FormStatus.editing || currentStatus == FormStatus.nonstatus)
             {
                 foreach (OrderLines ol in orderLine)
                 {
-                    grantPrcie += ol.UnitPrice;
+                    grantPrcie += ol.UnitPrice * ol.Quantity;
                 }
             }
             totalPrice = grantPrcie * ((txt_Rate.Text == string.Empty || txt_Rate.Text == "0") ? 1 : float.Parse(txt_Rate.Text)) * 1.13f;
