@@ -72,6 +72,7 @@ namespace TestConnetORCL.Report
                     DataRow newRow = dt.NewRow();
                     foreach (PropertyInfo property in cust.GetType().GetProperties())
                     {
+                        if(property.Name != "discount")
                             newRow[property.Name] = cust.GetType().GetProperty(property.Name).GetValue(cust, null);
                     }
                    dt.Rows.Add(newRow);

@@ -24,7 +24,7 @@ namespace DataLogic.DataAccessLayer
                 OracleCommand commn = dataConnection.ConnectToDatabase();
                 if(orderId == 0)
                 {
-                    commn.CommandText = "select o.orderid, o.orderdate, o.customerid,c.custfname, c.custlname, sum( ol.unitprice * ol.quantity) as amount "
+                    commn.CommandText = "select o.orderid, o.orderdate, o.customerid,c.custfname, c.custlname, sum( ol.unitprice * ol.quantity) as amount,o.DISCOUNT "
                                     + " from orders o"
                                     + " inner join orderline ol"
                                     + " on o.orderid = ol.orderid"
@@ -32,12 +32,12 @@ namespace DataLogic.DataAccessLayer
                                     + " on o.customerid = c.customerid";
                     if (outstanding)
                         commn.CommandText += " where o.status = 0";
-                    commn.CommandText += " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname"
+                    commn.CommandText += " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname,o.DISCOUNT"
                     + " order by amount desc";
                 }
                 else
                 {
-                    commn.CommandText = "select o.orderid, o.orderdate, o.customerid,c.custfname, c.custlname, sum( ol.unitprice * ol.quantity) as amount "
+                    commn.CommandText = "select o.orderid, o.orderdate, o.customerid,c.custfname, c.custlname, sum( ol.unitprice * ol.quantity) as amount,o.DISCOUNT "
                                     + " from orders o"
                                     + " inner join orderline ol"
                                     + " on o.orderid = ol.orderid"
@@ -48,7 +48,7 @@ namespace DataLogic.DataAccessLayer
                     else
                         commn.CommandText += " where o.orderid = " + orderId;
 
-                    commn.CommandText += " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname"
+                    commn.CommandText += " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname,o.DISCOUNT"
                                     + " order by amount desc";
                 }
                 OracleDataReader odr = commn.ExecuteReader();
@@ -61,7 +61,8 @@ namespace DataLogic.DataAccessLayer
                     aReport.custFirstName = odr.GetString(3);
                     aReport.custLastName = odr.GetString(4);
                     aReport.amount = odr.GetFloat(5);
-                    aReport.GrantAmount = aReport.amount * 1.13f;
+                    aReport.discount = odr.GetFloat(6);
+                    aReport.GrantAmount = aReport.amount * 1.13f * (1 - aReport.discount / 100);
                     listReport.Add(aReport);
                 }
                 dataConnection.CloseDatabase();
@@ -320,13 +321,13 @@ namespace DataLogic.DataAccessLayer
             {
                 OracleCommand commn = dataConnection.ConnectToDatabase();
                 commn.CommandText = "select * from (" +
-                    "select o.orderid, o.orderdate, o.customerid,c.custfname, c.custlname, sum( ol.unitprice * ol.quantity) as amount "
+                    "select o.orderid, o.orderdate, o.customerid,c.custfname, c.custlname, sum( ol.unitprice * ol.quantity) as amount,o.DISCOUNT "
                                     + " from orders o"
                                     + " inner join orderline ol"
                                     + " on o.orderid = ol.orderid"
                                     + " inner join customers c"
                                     + " on o.customerid = c.customerid"
-                                    + " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname, o.status"
+                                    + " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname, o.status,o.DISCOUNT"
                                     + " having o.status=1"
                                     + " order by amount desc)"
                                     + " where rownum < "
@@ -341,7 +342,8 @@ namespace DataLogic.DataAccessLayer
                     aReport.custFirstName = odr.GetString(3);
                     aReport.custLastName = odr.GetString(4);
                     aReport.amount = odr.GetFloat(5);
-                    aReport.GrantAmount = aReport.amount * 1.13f;
+                    aReport.discount = odr.GetFloat(6);
+                    aReport.GrantAmount = aReport.amount * 1.13f * (1 - aReport.discount / 100) ;
                     listReport.Add(aReport);
                 }
                 dataConnection.CloseDatabase();
@@ -367,13 +369,13 @@ namespace DataLogic.DataAccessLayer
             try
             {
                 OracleCommand commn = dataConnection.ConnectToDatabase();
-                commn.CommandText = "select o.orderid, o.orderdate, o.customerid,c.custfname, c.custlname, sum( ol.unitprice * ol.quantity) as amount "
+                commn.CommandText = "select o.orderid, o.orderdate, o.customerid,c.custfname, c.custlname, sum( ol.unitprice * ol.quantity) as amount,o.DISCOUNT "
                                     + " from orders o"
                                     + " inner join orderline ol"
                                     + " on o.orderid = ol.orderid"
                                     + " inner join customers c"
                                     + " on o.customerid = c.customerid"
-                                    + " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname, o.status"
+                                    + " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname, o.status,o.DISCOUNT"
                                     + " having o.status=0"
                                     + " order by amount desc";
                 OracleDataReader odr = commn.ExecuteReader();
@@ -386,7 +388,8 @@ namespace DataLogic.DataAccessLayer
                     aReport.custFirstName = odr.GetString(3);
                     aReport.custLastName = odr.GetString(4);
                     aReport.amount = odr.GetFloat(5);
-                    aReport.GrantAmount = aReport.amount * 1.13f;
+                    aReport.discount = odr.GetFloat(6);
+                    aReport.GrantAmount = aReport.amount * 1.13f * (1 - aReport.discount / 100) ;
                     listReport.Add(aReport);
                 }
                 dataConnection.CloseDatabase();
@@ -432,13 +435,13 @@ namespace DataLogic.DataAccessLayer
             try
             {
                 OracleCommand commn = dataConnection.ConnectToDatabase();
-                commn.CommandText = "select o.orderid, o.orderdate, o.customerid,c.custfname, c.custlname, sum(ol.unitprice * ol.quantity) as amount "
+                commn.CommandText = "select o.orderid, o.orderdate, o.customerid,c.custfname, c.custlname, sum(ol.unitprice * ol.quantity) as amount,o.DISCOUNT "
                                     + " from orders o"
                                     + " inner join orderline ol"
                                     + " on o.orderid = ol.orderid"
                                     + " inner join customers c"
                                     + " on o.customerid = c.customerid"
-                                    + " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname, o.status"
+                                    + " group by o.orderid, o.customerid,o.orderdate,c.custfname,c.custlname, o.status,o.DISCOUNT"
                                     + " having o.status=0";
                 if (daysType == 1)
                 { commn.CommandText += " and sysdate - o.orderdate <30"; }
@@ -459,7 +462,8 @@ namespace DataLogic.DataAccessLayer
                     aReport.custFirstName = odr.GetString(3);
                     aReport.custLastName = odr.GetString(4);
                     aReport.amount = odr.GetFloat(5);
-                    aReport.GrantAmount = aReport.amount * 1.13f;
+                    aReport.discount = odr.GetFloat(6);
+                    aReport.GrantAmount = aReport.amount * 1.13f * (1 - aReport.discount / 100);
                     listReport.Add(aReport);
                 }
                 dataConnection.CloseDatabase();
